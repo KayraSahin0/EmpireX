@@ -1,7 +1,9 @@
-{
+﻿{
     "name": "EmpireX.Save",
     "rootNamespace": "EmpireX.Save",
-    "references": [],
+    "references": [
+        "EmpireX.Data"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6cd84138b0359d74a9d5eb1d1fbf1541
+guid: 458d0d735700c5442a05985acf012372
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -873014990669008415
-    second: xpbarBG_0
+      213: -8633253176391537618
+    second: Star 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,8 +52,8 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 12, y: 12, z: 12, w: 12}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteBorder: {x: 365, y: 249, z: 366, w: 445}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -76,7 +76,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: xpbarBG_0
+      name: Star 2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 180
-        height: 24
+        width: 731
+        height: 695
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e1359dcd7d62e3f0800000000000000
-      internalID: -873014990669008415
+      spriteID: e2c6b2d1af5803880800000000000000
+      internalID: -8633253176391537618
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      xpbarBG_0: -873014990669008415
+      Star 2_0: -8633253176391537618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

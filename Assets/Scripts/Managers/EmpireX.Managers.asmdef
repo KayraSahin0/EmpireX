@@ -1,9 +1,11 @@
-{
+﻿{
     "name": "EmpireX.Managers",
     "rootNamespace": "EmpireX.Core",
     "references": [
         "EmpireX.Core",
-        "EmpireX.Events"
+        "EmpireX.Events",
+        "EmpireX.Data",
+        "EmpireX.Save"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
