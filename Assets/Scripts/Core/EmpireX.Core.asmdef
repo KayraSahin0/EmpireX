@@ -1,7 +1,9 @@
 {
     "name": "EmpireX.Core",
     "rootNamespace": "EmpireX.Core",
-    "references": [],
+    "references": [
+        "EmpireX.Events"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
