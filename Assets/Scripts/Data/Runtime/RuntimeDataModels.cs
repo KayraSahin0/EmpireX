@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace EmpireX.Data
@@ -178,6 +178,19 @@ namespace EmpireX.Data
     }
 
     [Serializable]
+    public class OfficeData
+    {
+        public string Id;
+        public string OwnerId;
+        public string Name;
+        public int Level;
+        public double CustomizationValue;
+        public float ProductivityBonus;
+        public float HappinessBonus;
+        public int MaxEmployees;
+    }
+
+    [Serializable]
     public class SaveData
     {
         public string SaveVersion;
@@ -189,6 +202,7 @@ namespace EmpireX.Data
         public List<EmployeeData> Employees = new List<EmployeeData>();
         public List<ExecutiveData> Executives = new List<ExecutiveData>();
         public List<ResearchData> Researches = new List<ResearchData>();
+        public List<OfficeData> Offices = new List<OfficeData>();
         public EconomyData EconomyData = new EconomyData();
         public StatisticsData StatisticsData = new StatisticsData();
         public TimeData TimeData = new TimeData();
@@ -203,6 +217,7 @@ namespace EmpireX.Data
             if (Employees == null) Employees = new List<EmployeeData>();
             if (Executives == null) Executives = new List<ExecutiveData>();
             if (Researches == null) Researches = new List<ResearchData>();
+            if (Offices == null) Offices = new List<OfficeData>();
             if (PlayerData == null) PlayerData = new PlayerData();
             if (HoldingData == null) HoldingData = new HoldingData();
             if (EconomyData == null) EconomyData = new EconomyData();

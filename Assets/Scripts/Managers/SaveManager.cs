@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using EmpireX.Events;
 using EmpireX.Save;
 using EmpireX.Data;
@@ -76,7 +76,10 @@ namespace EmpireX.Core
                 }
                 else
                 {
-                    _eventBus.Publish(new LoadFailed { SlotId = slotId, Error = "Save file not found." });
+                    // Yeni Oyun Durumu (Save bulunamadıysa)
+                    CurrentData = new SaveData();
+                    CurrentData.ValidateAndInitializeMissing();
+                    _eventBus.Publish(new LoadCompleted { SlotId = slotId, Data = CurrentData });
                 }
             }
             catch (Exception ex)

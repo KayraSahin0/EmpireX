@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using EmpireX.Events;
+using EmpireX.Economy;
+using EmpireX.Company;
+using EmpireX.Employee;
+using EmpireX.Office;
 
 namespace EmpireX.Core
 {
-    /// <summary>
-    /// Oyunun ana döngüsünü ve sistemleri başlatan yönetici sınıf.
-    /// </summary>
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
@@ -19,6 +20,10 @@ namespace EmpireX.Core
         public UIManager UIManager { get; private set; }
         public NotificationManager NotificationManager { get; private set; }
         public LocalizationManager LocalizationManager { get; private set; }
+        public EconomyManager EconomyManager { get; private set; }
+        public CompanyManager CompanyManager { get; private set; }
+        public OfficeManager OfficeManager { get; private set; }
+        public EmployeeManager EmployeeManager { get; private set; }
 
         private void Awake()
         {
@@ -36,25 +41,26 @@ namespace EmpireX.Core
 
         private void InitializeSystems()
         {
-            // 1. Config Yükleme
             ConfigSystem = new ConfigSystem();
             ConfigSystem.Initialize();
 
-            // 2. Event Bus
             EventManager = new EventManager();
             EventManager.Initialize();
             var eventBus = EventManager.EventBus;
 
-            // 3. Sistemlerin Yaratılması (Dependency Injection)
-            TimeManager = new TimeManager(eventBus);
+            TimeManager = new TimeManager(eventBus, ConfigSystem);
             SaveManager = new SaveManager(eventBus);
             SceneManager = new SceneManager(eventBus);
             AudioManager = new AudioManager(eventBus);
             UIManager = new UIManager(eventBus);
             NotificationManager = new NotificationManager(eventBus);
             LocalizationManager = new LocalizationManager(eventBus);
+            
+            EconomyManager = new EconomyManager(eventBus, ConfigSystem);
+            CompanyManager = new CompanyManager(eventBus, EconomyManager);
+            OfficeManager = new OfficeManager(eventBus, EconomyManager);
+            EmployeeManager = new EmployeeManager(eventBus, EconomyManager, CompanyManager, OfficeManager);
 
-            // 4. Sistemlerin Başlatılması
             TimeManager.Initialize();
             SaveManager.Initialize();
             SceneManager.Initialize();
@@ -62,9 +68,19 @@ namespace EmpireX.Core
             UIManager.Initialize();
             NotificationManager.Initialize();
             LocalizationManager.Initialize();
+            EconomyManager.Initialize();
+            CompanyManager.Initialize();
+            OfficeManager.Initialize();
+            EmployeeManager.Initialize();
 
-            // 5. Oyun Başlangıç Olayı
+            SaveManager.LoadGame("AutoSaveSlot");
+
             eventBus.Publish(new GameStarted());
+        }
+
+        private void Update()
+        {
+            TimeManager?.OnUpdate(Time.deltaTime);
         }
 
         private void OnDestroy()
@@ -78,6 +94,10 @@ namespace EmpireX.Core
                 UIManager?.Dispose();
                 NotificationManager?.Dispose();
                 LocalizationManager?.Dispose();
+                EmployeeManager?.Dispose();
+                OfficeManager?.Dispose();
+                CompanyManager?.Dispose();
+                EconomyManager?.Dispose();
                 EventManager?.Dispose();
                 ConfigSystem?.Dispose();
             }

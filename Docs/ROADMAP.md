@@ -99,10 +99,10 @@ Temel UI altyapısı.
 
 ## Tasks
 
-- Main Menu
+- Main Menu 
 - Loading Screen
 - Game HUD
-- Pause Menu
+- Pause Menu 
 - Popup System
 - Notification System
 - Navigation

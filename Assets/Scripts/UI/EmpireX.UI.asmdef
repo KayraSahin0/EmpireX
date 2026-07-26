@@ -1,7 +1,12 @@
-{
+﻿{
     "name": "EmpireX.UI",
     "rootNamespace": "EmpireX.UI",
-    "references": [],
+    "references": [
+        "EmpireX.Core",
+        "EmpireX.Events",
+        "EmpireX.Data",
+        "Unity.TextMeshPro"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

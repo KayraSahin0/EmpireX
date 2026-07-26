@@ -3,7 +3,7 @@
 namespace EmpireX.Core
 {
     /// <summary>
-    /// UIManager sınıfı.
+    /// UIManager sınıfı. Sistem Eventlerini dinleyerek Navigation veya UI sistemlerine komut iletir.
     /// </summary>
     public class UIManager : BaseManager
     {
@@ -11,12 +11,17 @@ namespace EmpireX.Core
 
         public override void Initialize()
         {
-            // Initialization logic
+            _eventBus.Subscribe<GameStarted>(OnGameStarted);
         }
         
+        private void OnGameStarted(GameStarted e)
+        {
+            // Oyun başladığında MainMenu veya GameHUD geçişi tetiklenir
+        }
+
         public override void Dispose()
         {
-            // Cleanup logic
+            _eventBus.Unsubscribe<GameStarted>(OnGameStarted);
         }
     }
 }
