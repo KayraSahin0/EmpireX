@@ -54,6 +54,14 @@ namespace EmpireX.Data
         public double Automation;
         public double Innovation;
         public double Risk;
+        
+        // Borsa (Stock Market) Verileri
+        public bool IsPublic;
+        public long TotalShares;
+        public long PublicShares;
+        public double SharePrice;
+        public float DividendYield;
+        
         public List<string> EmployeeIds = new List<string>();
         public List<string> BranchIds = new List<string>();
         public List<string> ExecutiveIds = new List<string>();
@@ -146,6 +154,12 @@ namespace EmpireX.Data
         public int TotalCities;
         public int TotalCountries;
         public float TotalPlayTime;
+        
+        // Grafikler ve Raporlar için Tarihsel Veriler
+        public List<double> NetWorthHistory = new List<double>();
+        public List<double> MonthlyRevenueHistory = new List<double>();
+        public List<double> MonthlyProfitHistory = new List<double>();
+        public List<double> CompanyCountHistory = new List<double>();
     }
 
     [Serializable]
@@ -191,6 +205,31 @@ namespace EmpireX.Data
     }
 
     [Serializable]
+    public class CityData
+    {
+        public string Id;
+        public string Name;
+        public double Rent;
+        public float Workforce;
+        public float Demand;
+        public float Competition;
+        public float CityBonus;
+    }
+
+    [Serializable]
+    public class CountryData
+    {
+        public string Id;
+        public string Name;
+        public string Currency;
+        public float TaxRate;
+        public float Inflation;
+        public float InterestRate;
+        public float Stability; // 0-100 arası (100 en iyi)
+        public float EconomyLevel; // 0-100 arası
+    }
+
+    [Serializable]
     public class SaveData
     {
         public string SaveVersion;
@@ -203,6 +242,9 @@ namespace EmpireX.Data
         public List<ExecutiveData> Executives = new List<ExecutiveData>();
         public List<ResearchData> Researches = new List<ResearchData>();
         public List<OfficeData> Offices = new List<OfficeData>();
+        public List<CityData> Cities = new List<CityData>();
+        public List<CountryData> Countries = new List<CountryData>();
+        public List<NewsData> News = new List<NewsData>();
         public EconomyData EconomyData = new EconomyData();
         public StatisticsData StatisticsData = new StatisticsData();
         public TimeData TimeData = new TimeData();
@@ -218,10 +260,19 @@ namespace EmpireX.Data
             if (Executives == null) Executives = new List<ExecutiveData>();
             if (Researches == null) Researches = new List<ResearchData>();
             if (Offices == null) Offices = new List<OfficeData>();
+            if (Cities == null) Cities = new List<CityData>();
+            if (Countries == null) Countries = new List<CountryData>();
+            if (News == null) News = new List<NewsData>();
             if (PlayerData == null) PlayerData = new PlayerData();
             if (HoldingData == null) HoldingData = new HoldingData();
             if (EconomyData == null) EconomyData = new EconomyData();
             if (StatisticsData == null) StatisticsData = new StatisticsData();
+            
+            // Tarihsel listeleri doğrula
+            if (StatisticsData.NetWorthHistory == null) StatisticsData.NetWorthHistory = new List<double>();
+            if (StatisticsData.MonthlyRevenueHistory == null) StatisticsData.MonthlyRevenueHistory = new List<double>();
+            if (StatisticsData.MonthlyProfitHistory == null) StatisticsData.MonthlyProfitHistory = new List<double>();
+            if (StatisticsData.CompanyCountHistory == null) StatisticsData.CompanyCountHistory = new List<double>();
             if (TimeData == null) TimeData = new TimeData();
         }
     }

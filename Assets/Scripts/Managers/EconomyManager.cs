@@ -6,7 +6,7 @@ using UnityEngine;
 namespace EmpireX.Economy
 {
     /// <summary>
-    /// Ekonomi simülasyonunu yöneten ana sistem.
+    /// Ekonomi simÃ¼lasyonunu yÃ¶neten ana sistem.
     /// </summary>
     public class EconomyManager : BaseManager
     {
@@ -22,6 +22,7 @@ namespace EmpireX.Economy
 
         public override void Initialize()
         {
+            _eventBus.Subscribe<ResearchCompleted>(OnResearchCompleted);
             _eventBus.Subscribe<LoadCompleted>(OnLoadCompleted);
             _eventBus.Subscribe<GameStarted>(OnGameStarted);
             _eventBus.Subscribe<DayStarted>(OnDayStarted);
@@ -41,6 +42,7 @@ namespace EmpireX.Economy
 
         public override void Dispose()
         {
+            _eventBus.Unsubscribe<ResearchCompleted>(OnResearchCompleted);
             _eventBus.Unsubscribe<LoadCompleted>(OnLoadCompleted);
             _eventBus.Unsubscribe<GameStarted>(OnGameStarted);
             _eventBus.Unsubscribe<DayStarted>(OnDayStarted);
@@ -53,7 +55,7 @@ namespace EmpireX.Economy
             _economyData = e.Data.EconomyData;
             _holdingData = e.Data.HoldingData;
 
-            // Eğer oyun yepyeni bir Save ise (Tick 0) config'teki başlangıç parasını ver
+            // EÄŸer oyun yepyeni bir Save ise (Tick 0) config'teki baÅŸlangÄ±Ã§ parasÄ±nÄ± ver
             if (e.Data.TimeData != null && e.Data.TimeData.Tick == 0 && _holdingData.Cash == 0)
             {
                 if (_economyConfig != null)
@@ -65,11 +67,21 @@ namespace EmpireX.Economy
 
         private void OnGameStarted(GameStarted e)
         {
-            // Veriler LoadCompleted'ta alındığı için burada sadece eksik veri kontrolü yapılabilir
+            // Veriler LoadCompleted'ta alÄ±ndÄ±ÄŸÄ± iÃ§in burada sadece eksik veri kontrolÃ¼ yapÄ±labilir
             if (_economyData.TaxRate == 0) _economyData.TaxRate = _economyConfig.DefaultTax;
             if (_economyData.Inflation == 0) _economyData.Inflation = _economyConfig.DefaultInflation;
             if (_economyData.InterestRate == 0) _economyData.InterestRate = _economyConfig.DefaultInterest;
             if (_economyData.ExchangeRate == 0) _economyData.ExchangeRate = 1.0f;
+        }
+
+                private void OnResearchCompleted(ResearchCompleted e)
+        {
+            // Research Bonuses Entegrasyonu
+            if (e.ResearchId == "res_tax_1")
+            {
+                _economyData.TaxRate = Mathf.Max(0.01f, _economyData.TaxRate - 0.02f); // Vergiyi kalıcı olarak %2 düşürür
+                _eventBus.Publish(new EconomyUpdated { EconomyData = _economyData });
+            }
         }
 
         private void OnDayStarted(DayStarted e)
@@ -157,3 +169,4 @@ namespace EmpireX.Economy
         }
     }
 }
+

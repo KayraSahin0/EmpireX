@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace EmpireX.Data
@@ -101,13 +101,4 @@ namespace EmpireX.Data
         public List<string> Effects = new List<string>();
     }
 
-    [CreateAssetMenu(fileName = "NewAchievement", menuName = "EmpireX/Data/Achievement")]
-    public class AchievementSO : ScriptableObject
-    {
-        public string Id;
-        public string Name;
-        public string Description;
-        public string Reward;
-        public Sprite Icon;
-    }
 }

@@ -6,6 +6,7 @@ using EmpireX.Data;
 using EmpireX.Economy;
 using EmpireX.Company;
 using EmpireX.Office;
+using EmpireX.Executive;
 
 namespace EmpireX.Employee
 {
@@ -14,14 +15,16 @@ namespace EmpireX.Employee
         private readonly EconomyManager _economyManager;
         private readonly CompanyManager _companyManager;
         private readonly OfficeManager _officeManager;
+        private readonly ExecutiveManager _executiveManager;
         private List<EmployeeData> _employees;
         private Random _rnd = new Random();
 
-        public EmployeeManager(IEventBus eventBus, EconomyManager economyManager, CompanyManager companyManager, OfficeManager officeManager) : base(eventBus)
+        public EmployeeManager(IEventBus eventBus, EconomyManager economyManager, CompanyManager companyManager, OfficeManager officeManager, ExecutiveManager executiveManager) : base(eventBus)
         {
             _economyManager = economyManager;
             _companyManager = companyManager;
             _officeManager = officeManager;
+            _executiveManager = executiveManager;
         }
 
         public override void Initialize()
@@ -50,7 +53,7 @@ namespace EmpireX.Employee
 
             var office = _officeManager.GetOfficeByOwner(companyId);
             int currentEmployees = _employees.Count(e => e.CompanyId == companyId);
-            int maxEmployees = office != null ? office.MaxEmployees : 5; // Ofis yoksa max 5 çalışan kapasitesi
+            int maxEmployees = office != null ? office.MaxEmployees : 5;
 
             if (currentEmployees >= maxEmployees)
             {
@@ -148,6 +151,13 @@ namespace EmpireX.Employee
                 float prodBonus = office != null ? office.ProductivityBonus : 0f;
 
                 emp.Stress += (float)(_rnd.NextDouble() * 2 - 0.5);
+                
+                // HR Direktörü bonusu: Stresi her gün azaltır
+                if (_executiveManager != null && _executiveManager.HasExecutive(emp.CompanyId, "HR"))
+                {
+                    emp.Stress -= 1.5f;
+                }
+
                 emp.Stress = Math.Clamp(emp.Stress, 0, 100);
 
                 if (emp.Stress > 80)
@@ -155,13 +165,9 @@ namespace EmpireX.Employee
                     emp.Happiness -= 1f;
                 }
                 
-                // Ofis mutluluk bonusu günlük pasif bir destek sağlar
                 emp.Happiness = Math.Clamp(emp.Happiness + (happinessBonus * 0.01f), 0, 100);
-                
                 emp.Experience += 0.5f; 
-                
                 emp.Productivity = (emp.Skill + emp.Experience/10f) * (emp.Happiness / 100f) * (1 - (emp.Stress/200f));
-                // Ofis üretkenlik bonusu doğrudan eklenir
                 emp.Productivity += prodBonus; 
             }
         }
