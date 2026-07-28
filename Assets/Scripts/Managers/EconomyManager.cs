@@ -104,6 +104,11 @@ namespace EmpireX.Economy
 
         public void AddRevenue(double amount, string reason = "General")
         {
+            if (EmpireX.Core.GameManager.Instance != null && EmpireX.Core.GameManager.Instance.WeeklyEventManager != null)
+            {
+                amount *= EmpireX.Core.GameManager.Instance.WeeklyEventManager.GetActiveModifier(EmpireX.Data.WeeklyEventModifier.GlobalRevenueBoost);
+            }
+
             _economyData.Revenue += amount;
             _holdingData.Cash += amount;
             UpdateCashFlow();
@@ -113,6 +118,11 @@ namespace EmpireX.Economy
 
         public void AddExpense(double amount, string reason = "General")
         {
+            if (EmpireX.Core.GameManager.Instance != null && EmpireX.Core.GameManager.Instance.WeeklyEventManager != null)
+            {
+                amount *= EmpireX.Core.GameManager.Instance.WeeklyEventManager.GetActiveModifier(EmpireX.Data.WeeklyEventModifier.GlobalExpenseReduction);
+            }
+
             _economyData.Expense += amount;
             _holdingData.Cash -= amount;
             UpdateCashFlow();

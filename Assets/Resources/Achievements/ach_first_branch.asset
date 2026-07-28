@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408e334bc779b7f499e7102d6c7fff87, type: 3}
+  m_Name: ach_first_branch
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.AchievementSO
+  Id: ach_first_branch
+  Title: Ilk Subeni Kur
+  Description: Sirketinizin ilk subesini kurun
+  Type: 1
+  TargetValue: 1
+  CashReward: 1000
+  BrandReward: 1

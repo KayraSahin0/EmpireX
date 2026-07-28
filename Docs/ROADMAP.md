@@ -446,24 +446,6 @@ Kalite kontrol.
 
 ---
 
-# Phase 25 — Release
-
-## Goal
-
-Yayın hazırlığı.
-
-## Tasks
-
-- Android Build
-- iOS Build
-- Store Assets
-- Icons
-- Splash Screen
-- Privacy
-- Release Build
-
----
-
 # Optional 01 — Daily Missions
 
 - Daily Tasks

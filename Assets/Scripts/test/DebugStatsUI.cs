@@ -218,6 +218,54 @@ namespace EmpireX.Test
                 }
             }
 
+            // Günlük Görevler (Daily Missions)
+            GUILayout.Space(10);
+            GUILayout.Label($"<b>--- GÜNLÜK GÖREVLER (Kalan Süre: Gece Yarısı Yenilenir) ---</b>");
+            if (data.ActiveMissions.Count == 0)
+            {
+                GUILayout.Label("Aktif görev bulunmuyor.");
+            }
+            else
+            {
+                foreach (var mission in data.ActiveMissions)
+                {
+                    string status = mission.IsCompleted ? (mission.IsRewardClaimed ? "<color=green>[ALINDI]</color>" : "<color=yellow>[TAMAMLANDI]</color>") : $"<color=orange>[{mission.CurrentProgress} / Hedef]</color>";
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label($"- {mission.MissionId} {status}");
+                    
+                    if (mission.IsCompleted && !mission.IsRewardClaimed)
+                    {
+                        if (GUILayout.Button("Ödülü Al", GUILayout.Width(80)))
+                        {
+                            EmpireX.Core.GameManager.Instance.MissionManager.ClaimReward(mission.MissionId);
+                        }
+                    }
+                    GUILayout.EndHorizontal();
+                }
+            }
+
+            // Haftalık Etkinlik
+            GUILayout.Space(10);
+            GUILayout.Label($"<b>--- HAFTALIK ETKİNLİK ---</b>");
+            if (!string.IsNullOrEmpty(data.ActiveWeeklyEventId))
+            {
+                long currentTicks = System.DateTime.UtcNow.Ticks;
+                var timeLeft = new System.TimeSpan(data.WeeklyEventEndTime - currentTicks);
+                if (timeLeft.TotalSeconds > 0)
+                {
+                    GUILayout.Label($"<color=cyan>[AKTİF]</color> Etkinlik ID: {data.ActiveWeeklyEventId}");
+                    GUILayout.Label($"Kalan Süre: {timeLeft.Days} Gün {timeLeft.Hours} Saat");
+                }
+                else
+                {
+                    GUILayout.Label("<color=gray>[SÜRESİ DOLDU - YENİLENİYOR]</color>");
+                }
+            }
+            else
+            {
+                GUILayout.Label("Şu an aktif bir etkinlik yok.");
+            }
+
             GUILayout.EndScrollView();
             GUI.DragWindow(); // Farenizle pencereyi tutup ekranın istediğiniz yerine sürükleyebilirsiniz
         }

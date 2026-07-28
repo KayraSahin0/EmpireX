@@ -230,6 +230,15 @@ namespace EmpireX.Data
     }
 
     [Serializable]
+    public class MissionData
+    {
+        public string MissionId;
+        public double CurrentProgress;
+        public bool IsCompleted;
+        public bool IsRewardClaimed;
+    }
+
+    [Serializable]
     public class SaveData
     {
         public string SaveVersion;
@@ -248,6 +257,12 @@ namespace EmpireX.Data
         public EconomyData EconomyData = new EconomyData();
         public StatisticsData StatisticsData = new StatisticsData();
         public TimeData TimeData = new TimeData();
+        
+        public List<MissionData> ActiveMissions = new List<MissionData>();
+        public long LastMissionRefreshTime; // Gerçek dünya zamanı (Real-time)
+        
+        public string ActiveWeeklyEventId;
+        public long WeeklyEventEndTime; // Gerçek dünya zamanı (Real-time)
 
         /// <summary>
         /// Eksik listeleri tamamlar ve veriyi doğrular.
@@ -274,6 +289,7 @@ namespace EmpireX.Data
             if (StatisticsData.MonthlyProfitHistory == null) StatisticsData.MonthlyProfitHistory = new List<double>();
             if (StatisticsData.CompanyCountHistory == null) StatisticsData.CompanyCountHistory = new List<double>();
             if (TimeData == null) TimeData = new TimeData();
+            if (ActiveMissions == null) ActiveMissions = new List<MissionData>();
         }
     }
 }

@@ -17,6 +17,7 @@ using EmpireX.Statistics;
 using EmpireX.Acquisition;
 using EmpireX.StockMarket;
 using EmpireX.Achievements;
+using EmpireX.Missions;
 
 namespace EmpireX.Core
 {
@@ -33,6 +34,7 @@ namespace EmpireX.Core
         public UIManager UIManager { get; private set; }
         public NotificationManager NotificationManager { get; private set; }
         public LocalizationManager LocalizationManager { get; private set; }
+        public VFXManager VFXManager { get; private set; }
         
         public MarketManager MarketManager { get; private set; }
         public CountryManager CountryManager { get; private set; }
@@ -51,6 +53,8 @@ namespace EmpireX.Core
         public AcquisitionManager AcquisitionManager { get; private set; }
         public StockManager StockManager { get; private set; }
         public AchievementManager AchievementManager { get; private set; }
+        public MissionManager MissionManager { get; private set; }
+        public EmpireX.Managers.WeeklyEventManager WeeklyEventManager { get; private set; }
 
         private void Awake()
         {
@@ -82,6 +86,7 @@ namespace EmpireX.Core
             UIManager = new UIManager(eventBus);
             NotificationManager = new NotificationManager(eventBus);
             LocalizationManager = new LocalizationManager(eventBus);
+            VFXManager = new VFXManager(eventBus);
             
             CountryManager = new CountryManager(eventBus);
             CityManager = new CityManager(eventBus);
@@ -95,6 +100,8 @@ namespace EmpireX.Core
             AcquisitionManager = new AcquisitionManager(eventBus, EconomyManager, CompanyManager);
             StockManager = new StockManager(eventBus, EconomyManager, CompanyManager);
             AchievementManager = new AchievementManager(eventBus, EconomyManager);
+            MissionManager = new MissionManager(eventBus, EconomyManager);
+            WeeklyEventManager = new EmpireX.Managers.WeeklyEventManager(eventBus);
             OfficeManager = new OfficeManager(eventBus, EconomyManager);
             ExecutiveManager = new ExecutiveManager(eventBus, EconomyManager, CompanyManager);
             EmployeeManager = new EmployeeManager(eventBus, EconomyManager, CompanyManager, OfficeManager, ExecutiveManager);
@@ -108,6 +115,7 @@ namespace EmpireX.Core
             UIManager.Initialize();
             NotificationManager.Initialize();
             LocalizationManager.Initialize();
+            VFXManager.Initialize();
             CountryManager.Initialize();
             CityManager.Initialize();
             EconomyManager.Initialize();
@@ -120,13 +128,16 @@ namespace EmpireX.Core
             AcquisitionManager.Initialize();
             StockManager.Initialize();
             AchievementManager.Initialize();
+            MissionManager.Initialize();
+            WeeklyEventManager.Initialize();
             OfficeManager.Initialize();
             ExecutiveManager.Initialize();
             EmployeeManager.Initialize();
             BranchManager.Initialize();
             HoldingManager.Initialize();
 
-            SaveManager.LoadGame("AutoSaveSlot");
+            // LoadGame burada otomatik YAPILMAMALIDIR! 
+            // Save dosyası MainMenu'den (UI) manuel tetiklenerek yüklenmelidir.
 
             eventBus.Publish(new GameStarted());
         }
@@ -147,6 +158,7 @@ namespace EmpireX.Core
                 UIManager?.Dispose();
                 NotificationManager?.Dispose();
                 LocalizationManager?.Dispose();
+                VFXManager?.Dispose();
                 HoldingManager?.Dispose();
                 BranchManager?.Dispose();
                 EmployeeManager?.Dispose();
@@ -164,6 +176,8 @@ namespace EmpireX.Core
                 AcquisitionManager?.Dispose();
                 StockManager?.Dispose();
                 AchievementManager?.Dispose();
+                MissionManager?.Dispose();
+                WeeklyEventManager?.Dispose();
                 EventManager?.Dispose();
                 ConfigSystem?.Dispose();
             }

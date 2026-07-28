@@ -1,4 +1,4 @@
-﻿namespace EmpireX.UI
+namespace EmpireX.UI
 {
     public class LoadingScreen : BasePanel
     {

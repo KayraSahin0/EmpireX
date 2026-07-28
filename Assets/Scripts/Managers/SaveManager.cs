@@ -13,7 +13,16 @@ namespace EmpireX.Core
         private ISaveService _saveService;
         public SaveData CurrentData { get; private set; }
         
-        private bool _autoSaveEnabled = true;
+        private bool _autoSaveEnabled = false;
+        
+        public bool IsAutoSaveEnabled => _autoSaveEnabled;
+        
+        public void SetAutoSave(bool state)
+        {
+            _autoSaveEnabled = state;
+            UnityEngine.PlayerPrefs.SetInt("AutoSaveSetting", state ? 1 : 0);
+            UnityEngine.PlayerPrefs.Save();
+        }
 
         public SaveManager(IEventBus eventBus) : base(eventBus) { }
 
@@ -24,6 +33,18 @@ namespace EmpireX.Core
             IEncryptor encryptor = new SimpleEncryptor();
             
             _saveService = new SaveService(serializer, storage, encryptor);
+            
+            // Kullanıcının AutoSave tercihini belleğe yükle
+            int pref = UnityEngine.PlayerPrefs.GetInt("AutoSaveSetting", -1);
+            if (pref == -1)
+            {
+                // Eğer oyuncu kendi eliyle ayarı hiç değiştirmediyse ve mevcut kaydı varsa aç
+                _autoSaveEnabled = GetAllSaves().Count > 0;
+            }
+            else
+            {
+                _autoSaveEnabled = pref == 1;
+            }
         }
 
         public void ManualSave(string slotId)
@@ -34,9 +55,10 @@ namespace EmpireX.Core
         public void AutoSave()
         {
             if (!_autoSaveEnabled) return;
+            if (CurrentData == null || string.IsNullOrEmpty(CurrentData.HoldingData.Name)) return; 
             
             _eventBus.Publish(new AutoSaveStarted());
-            SaveGame("AutoSaveSlot");
+            SaveGame(CurrentData.HoldingData.Name); // "AutoSaveSlot" yerine direkt üzerine yazıyoruz
             _eventBus.Publish(new AutoSaveCompleted());
         }
 
@@ -89,6 +111,36 @@ namespace EmpireX.Core
         }
         
         public bool HasSave(string slotId) => _saveService.HasSave(slotId);
+        
+        public void DeleteSave(string slotId)
+        {
+            _saveService.Delete(slotId);
+        }
+        
+        public System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, SaveData>> GetAllSaves()
+        {
+            var list = new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, SaveData>>();
+            var dir = UnityEngine.Application.persistentDataPath;
+            var files = System.IO.Directory.GetFiles(dir, "*.sav");
+            
+            foreach (var file in files)
+            {
+                string slotId = System.IO.Path.GetFileNameWithoutExtension(file);
+                // Backup dosyalarını atla
+                if (slotId.EndsWith("_backup")) continue;
+                
+                try 
+                {
+                    var data = _saveService.Load(slotId);
+                    if (data != null)
+                    {
+                        list.Add(new System.Collections.Generic.KeyValuePair<string, SaveData>(slotId, data));
+                    }
+                }
+                catch { } // Bozuk save dosyalarını atla
+            }
+            return list;
+        }
         
         public void SetCurrentData(SaveData data)
         {
