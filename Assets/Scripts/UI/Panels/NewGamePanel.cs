@@ -50,8 +50,12 @@ namespace EmpireX.UI
             if (GameManager.Instance != null)
             {
                 GameManager.Instance.StartGameSimulation();
+                GameManager.Instance.SceneManager.LoadSceneAsync("GameScene");
             }
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+            else
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+            }
         }
 
         public void OnBackClicked()

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +18,12 @@ namespace EmpireX.Core
 
         public void Initialize()
         {
-            // Addressables veya Resources üzerinden config yüklemeleri burada yapılacak
+            // Resources/Configs klasöründeki tüm ScriptableObject konfigürasyonlarını otomatik yükle
+            var allConfigs = Resources.LoadAll<ScriptableObject>("Configs");
+            foreach (var config in allConfigs)
+            {
+                _configs[config.GetType()] = config;
+            }
         }
 
         public void RegisterConfig<T>(T config) where T : ScriptableObject
@@ -32,6 +37,15 @@ namespace EmpireX.Core
             {
                 return config as T;
             }
+            
+            // Eğer Dictionary içinde yoksa anlık olarak okumayı dene
+            var loadedConfig = Resources.Load<T>($"Configs/{typeof(T).Name}");
+            if (loadedConfig != null)
+            {
+                _configs[typeof(T)] = loadedConfig;
+                return loadedConfig;
+            }
+            
             return null;
         }
 

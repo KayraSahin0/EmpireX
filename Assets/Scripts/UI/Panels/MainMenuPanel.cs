@@ -68,7 +68,7 @@ namespace EmpireX.UI
                     GameManager.Instance.SaveManager.SetAutoSave(true);
                     
                     GameManager.Instance.StartGameSimulation();
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+                    GameManager.Instance.SceneManager.LoadSceneAsync("GameScene");
                 }
             }
         }
