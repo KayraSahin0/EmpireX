@@ -35,6 +35,8 @@ namespace EmpireX.Core
         public NotificationManager NotificationManager { get; private set; }
         public LocalizationManager LocalizationManager { get; private set; }
         public VFXManager VFXManager { get; private set; }
+        public ErrorManager ErrorManager { get; private set; }
+        public TelemetryManager TelemetryManager { get; private set; }
         
         public MarketManager MarketManager { get; private set; }
         public CountryManager CountryManager { get; private set; }
@@ -87,6 +89,8 @@ namespace EmpireX.Core
             NotificationManager = new NotificationManager(eventBus);
             LocalizationManager = new LocalizationManager(eventBus);
             VFXManager = new VFXManager(eventBus);
+            ErrorManager = new ErrorManager(eventBus);
+            TelemetryManager = new TelemetryManager(eventBus, ConfigSystem);
             
             CountryManager = new CountryManager(eventBus);
             CityManager = new CityManager(eventBus);
@@ -116,6 +120,8 @@ namespace EmpireX.Core
             NotificationManager.Initialize();
             LocalizationManager.Initialize();
             VFXManager.Initialize();
+            ErrorManager.Initialize();
+            TelemetryManager.Initialize();
             CountryManager.Initialize();
             CityManager.Initialize();
             EconomyManager.Initialize();

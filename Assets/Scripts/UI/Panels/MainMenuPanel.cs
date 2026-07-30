@@ -18,10 +18,10 @@ namespace EmpireX.UI
 
         private void Start()
         {
-            if (NewGamePanel != null) NewGamePanel.Hide();
-            if (LoadMenuPanel != null) LoadMenuPanel.Hide();
-            if (SettingsPanel != null) SettingsPanel.Hide();
-            if (AchievementPanel != null) AchievementPanel.Hide();
+            if (NewGamePanel != null) NewGamePanel.HideImmediate();
+            if (LoadMenuPanel != null) LoadMenuPanel.HideImmediate();
+            if (SettingsPanel != null) SettingsPanel.HideImmediate();
+            if (AchievementPanel != null) AchievementPanel.HideImmediate();
 
             CheckContinueButtonState();
         }
@@ -95,10 +95,37 @@ namespace EmpireX.UI
 
         public void OnQuitClicked()
         {
-            Application.Quit();
+            if (GameManager.Instance != null && GameManager.Instance.EventManager != null)
+            {
+                GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
+                {
+                    Title = "Çıkış Yap",
+                    Message = "Çıkmak istediğinize emin misiniz? Oyununuz otomatik olarak kaydedilecektir.",
+                    Severity = EmpireX.Events.ErrorSeverity.Info,
+                    Button1Text = "Çık",
+                    Button1Callback = () => 
+                    {
+                        if (GameManager.Instance.SaveManager != null)
+                        {
+                            GameManager.Instance.SaveManager.AutoSave();
+                        }
+                        
+                        Application.Quit();
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+                        UnityEditor.EditorApplication.isPlaying = false;
 #endif
+                    },
+                    Button2Text = "İptal",
+                    Button2Callback = () => {}
+                });
+            }
+            else
+            {
+                Application.Quit();
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            }
         }
     }
 }

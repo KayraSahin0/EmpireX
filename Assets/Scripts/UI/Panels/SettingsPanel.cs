@@ -81,13 +81,40 @@ namespace EmpireX.UI
         {
             bool isAutoSave = value > 0.5f;
             
-            if (GameManager.Instance != null && GameManager.Instance.SaveManager != null)
+            if (!isAutoSave)
             {
-                GameManager.Instance.SaveManager.SetAutoSave(isAutoSave);
+                if (GameManager.Instance != null && GameManager.Instance.EventManager != null)
+                {
+                    GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
+                    {
+                        Title = "Otomatik Kayıt Kapatılıyor",
+                        Message = "Kapatmak istediğinize emin misiniz?",
+                        Severity = EmpireX.Events.ErrorSeverity.Warning,
+                        Button1Text = "Evet",
+                        Button1Callback = () => 
+                        {
+                            if (GameManager.Instance.SaveManager != null)
+                            {
+                                GameManager.Instance.SaveManager.SetAutoSave(false);
+                            }
+                            if (AutomaticSaveSlider != null) AutomaticSaveSlider.SetValueWithoutNotify(0);
+                        },
+                        Button2Text = "Hayır",
+                        Button2Callback = () => 
+                        {
+                            if (AutomaticSaveSlider != null) AutomaticSaveSlider.SetValueWithoutNotify(1);
+                        }
+                    });
+                }
             }
-            
-            // 0 veya 1 değerine sabitle
-            if (AutomaticSaveSlider != null) AutomaticSaveSlider.value = isAutoSave ? 1 : 0;
+            else
+            {
+                if (GameManager.Instance != null && GameManager.Instance.SaveManager != null)
+                {
+                    GameManager.Instance.SaveManager.SetAutoSave(true);
+                }
+                if (AutomaticSaveSlider != null) AutomaticSaveSlider.SetValueWithoutNotify(1);
+            }
         }
 
         private void OnNotificationChanged(float value)
