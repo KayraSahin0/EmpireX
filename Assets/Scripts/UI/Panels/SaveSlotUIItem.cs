@@ -35,6 +35,7 @@ namespace EmpireX.UI
                 // Oyuncu oyuna başladığı/yüklediği an AutoSave özelliğini aktifleştiriyoruz
                 EmpireX.Core.GameManager.Instance.SaveManager.SetAutoSave(true);
                 
+                EmpireX.Core.GameManager.Instance.StartGameSimulation();
                 UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
             }
         }

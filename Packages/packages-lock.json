@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.kayra.project-todo": {
+      "version": "file:C:/Users/tosun/Desktop/ProjectTODOUnity",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "13.0.4",
       "depth": 0,

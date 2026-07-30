@@ -33,7 +33,7 @@ namespace EmpireX.UI
                 newData.PlayerData.PlayerName = ceoName;
                 newData.HoldingData.Name = holdingName;
 
-                GameManager.Instance.SaveManager.SetCurrentData(newData);
+                GameManager.Instance.SaveManager.SetCurrentData(newData, holdingName);
                 GameManager.Instance.SaveManager.ManualSave(holdingName); // Holding adıyla kaydet
                 
                 // Oyuncu yeni bir oyuna başladığında AutoSave özelliğini varsayılan olarak açıyoruz
@@ -46,7 +46,11 @@ namespace EmpireX.UI
                 Debug.LogError("[NewGamePanel] HATA: GameManager veya SaveManager bulunamadı! Sahneye GameManager ekli olduğundan emin olun. Save alınamadan sahneye geçiliyor...");
             }
 
-            Debug.Log("[NewGamePanel] Sahne geçişi (GameScene) yapılıyor...");
+            Debug.Log("[NewGamePanel] Sahne geçişi (GameScene) yapılıyor ve Simülasyon başlatılıyor...");
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.StartGameSimulation();
+            }
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using EmpireX.Events;
 using EmpireX.Data;
@@ -46,7 +46,10 @@ namespace EmpireX.Holding
             if (string.IsNullOrEmpty(_holdingData.Id))
             {
                 _holdingData.Id = Guid.NewGuid().ToString();
-                _holdingData.Name = "My Empire Holding";
+                if (string.IsNullOrEmpty(_holdingData.Name))
+                {
+                    _holdingData.Name = "My Empire Holding";
+                }
                 _holdingData.Level = 1;
                 _eventBus.Publish(new HoldingCreated { HoldingId = _holdingData.Id, Name = _holdingData.Name });
             }

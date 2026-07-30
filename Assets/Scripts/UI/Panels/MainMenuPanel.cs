@@ -16,6 +16,16 @@ namespace EmpireX.UI
         public Button ContinueBtn;
         public TMP_Text VersionText;
 
+        private void Start()
+        {
+            if (NewGamePanel != null) NewGamePanel.Hide();
+            if (LoadMenuPanel != null) LoadMenuPanel.Hide();
+            if (SettingsPanel != null) SettingsPanel.Hide();
+            if (AchievementPanel != null) AchievementPanel.Hide();
+
+            CheckContinueButtonState();
+        }
+
         private void OnEnable()
         {
             if (VersionText != null)
@@ -57,6 +67,7 @@ namespace EmpireX.UI
                     // Oyuncu oyuna başladığı/yüklediği an AutoSave özelliğini aktifleştiriyoruz
                     GameManager.Instance.SaveManager.SetAutoSave(true);
                     
+                    GameManager.Instance.StartGameSimulation();
                     UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
                 }
             }
@@ -84,10 +95,6 @@ namespace EmpireX.UI
 
         public void OnQuitClicked()
         {
-            if (GameManager.Instance != null && GameManager.Instance.SaveManager != null)
-            {
-                GameManager.Instance.SaveManager.ManualSave("AutoSaveSlot");
-            }
             Application.Quit();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;

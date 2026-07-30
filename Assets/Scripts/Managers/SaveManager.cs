@@ -12,6 +12,7 @@ namespace EmpireX.Core
     {
         private ISaveService _saveService;
         public SaveData CurrentData { get; private set; }
+        public string CurrentSlotId { get; private set; }
         
         private bool _autoSaveEnabled = false;
         
@@ -55,11 +56,18 @@ namespace EmpireX.Core
         public void AutoSave()
         {
             if (!_autoSaveEnabled) return;
-            if (CurrentData == null || string.IsNullOrEmpty(CurrentData.HoldingData.Name)) return; 
+            if (CurrentData == null || string.IsNullOrEmpty(CurrentSlotId)) return; 
             
             _eventBus.Publish(new AutoSaveStarted());
-            SaveGame(CurrentData.HoldingData.Name); // "AutoSaveSlot" yerine direkt üzerine yazıyoruz
+            SaveGame(CurrentSlotId);
             _eventBus.Publish(new AutoSaveCompleted());
+        }
+
+        public void SaveOnExit()
+        {
+            if (CurrentData == null || string.IsNullOrEmpty(CurrentSlotId)) return; 
+            
+            SaveGame(CurrentSlotId);
         }
 
         private void SaveGame(string slotId)
@@ -94,12 +102,14 @@ namespace EmpireX.Core
                 if (data != null)
                 {
                     CurrentData = data;
+                    CurrentSlotId = slotId;
                     _eventBus.Publish(new LoadCompleted { SlotId = slotId, Data = data });
                 }
                 else
                 {
                     // Yeni Oyun Durumu (Save bulunamadıysa)
                     CurrentData = new SaveData();
+                    CurrentSlotId = slotId;
                     CurrentData.ValidateAndInitializeMissing();
                     _eventBus.Publish(new LoadCompleted { SlotId = slotId, Data = CurrentData });
                 }
@@ -142,15 +152,23 @@ namespace EmpireX.Core
             return list;
         }
         
-        public void SetCurrentData(SaveData data)
+        public void SetCurrentData(SaveData data, string slotId)
         {
             CurrentData = data;
+            CurrentSlotId = slotId;
+            
+            // Veri dışarıdan set edildiğinde (Yeni Oyun) diğer manager'ların 
+            // referanslarını alabilmesi için LoadCompleted simüle et.
+            if (data != null)
+            {
+                _eventBus.Publish(new LoadCompleted { SlotId = slotId, Data = data });
+            }
         }
 
         public override void Dispose()
         {
             // AutoSave when disposing manager
-            AutoSave();
+            SaveOnExit();
         }
     }
 }

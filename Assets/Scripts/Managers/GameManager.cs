@@ -138,8 +138,11 @@ namespace EmpireX.Core
 
             // LoadGame burada otomatik YAPILMAMALIDIR! 
             // Save dosyası MainMenu'den (UI) manuel tetiklenerek yüklenmelidir.
+        }
 
-            eventBus.Publish(new GameStarted());
+        public void StartGameSimulation()
+        {
+            EventManager.EventBus.Publish(new GameStarted());
         }
 
         private void Update()

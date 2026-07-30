@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13263cd12db09e40a2597f9688ca02b, type: 3}
+  m_Name: ProjectTodoDatabase
+  m_EditorClassIdentifier: Kayra.ProjectTodo.Editor::Kayra.ProjectTodo.ProjectTodoDatabase
+  todos:
+  - id: 05cff592-c298-4aa7-a213-4cfc087e8c58
+    title: PopUp
+    description: "Otomatik kayydetme ve save dosyas\u0131 silme uyar\u0131lar\u0131
+      ba\u015Fta olmak \xFCzere olu\u015Fabilecek b\xFCt\xFCn hatalar\u0131 debugLog
+      yerine ekrana yazd\u0131raca\u011F\u0131m\u0131z veya oyuncuyu bilgilendirmek
+      i\xE7in kullanaca\u011Fimiz bir popUp yap"
+    categoryId: 43f67495-a5b7-46c2-bcf2-832743e37dd1
+    isCompleted: 0
+    createdAtTicks: 639209564526045530
+    completedAtTicks: 0
+  - id: 333ca1c5-196a-4df1-b830-46be990e4beb
+    title: Loading Panel
+    description: "Oyun ba\u015F\u0131ndaki loading paneli yap ve arkaplan resimleri
+      rastegele de\u011Fi\u015Fecek \u015Fekilde kodla bunun i\xE7in bir config dosyas\u0131
+      olu\u015Ftur, config dosyas\u0131 i\xE7indeki foto\u011Fraflar\u0131n i\xE7inden
+      rastgele se\xE7sin"
+    categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
+    isCompleted: 0
+    createdAtTicks: 639209565599683699
+    completedAtTicks: 0
+  - id: 9af23626-2bb3-48ea-ac97-ce14b26d647f
+    title: GameScene UI
+    description: "Oyun men\xFCs\xFCnde ki UIlar\u0131 d\xFCzelt ve gereken yeni UI
+      lar\u0131 yap (\xE7al\u0131\u015Fan almak, \xFClke \u015Fehir a\xE7mak vb.)"
+    categoryId: 43f67495-a5b7-46c2-bcf2-832743e37dd1
+    isCompleted: 0
+    createdAtTicks: 639209566532407358
+    completedAtTicks: 0
+  - id: 1a06541c-766b-40cc-83e4-dad12e04d385
+    title: "Oyun ekran\u0131ndaki UIlar\u0131 koda ba\u011Fla"
+    description: "Oyun ekran\u0131ndaki UIlar\u0131 koda ba\u011Fla hepsini test
+      et tek tek ilerle Bu g\xF6revi a\u015Famalara b\xF6l"
+    categoryId: 
+    isCompleted: 0
+    createdAtTicks: 639209567065923517
+    completedAtTicks: 0
+  - id: e3753c8d-0281-461d-b053-4fc9b3146d2e
+    title: "Config dosyalar\u0131 olu\u015Ftur"
+    description: "AI ile config dosyalar\u0131 olu\u015Ftur ba\u015Flang\u0131\xE7
+      olarak hepsinden 5 adet yeter"
+    categoryId: 8921ef24-db4e-4db4-be30-ded95fe2447f
+    isCompleted: 0
+    createdAtTicks: 639209567458808263
+    completedAtTicks: 0
+  - id: f6f606b8-dfee-4f0e-8ba6-25514803363a
+    title: MainMenu panelleri
+    description: "Ana men\xFCde panelleri MainMenuPanel scriptinde Start() fonksiyonu
+      i\xE7erisinde panellerin kod ile kapal\u0131 duruma getirilsin"
+    categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
+    isCompleted: 0
+    createdAtTicks: 639210258332963548
+    completedAtTicks: 0
+  categories:
+  - id: 43f67495-a5b7-46c2-bcf2-832743e37dd1
+    name: UI
+    color: {r: 0.47686014, g: 0.7169812, b: 0.49885595, a: 1}
+  - id: 6200c9d8-d402-45c1-b81d-1dcc83a76214
+    name: Code
+    color: {r: 0.22107512, g: 0.3403904, b: 0.6792453, a: 1}
+  - id: 627201ac-41aa-4986-abe3-2d55939fd818
+    name: "Hata-D\xFCzeltme"
+    color: {r: 0.553, g: 0.08290317, b: 0.08290317, a: 1}
+  - id: 8921ef24-db4e-4db4-be30-ded95fe2447f
+    name: Config
+    color: {r: 0.7862726, g: 0.8490566, b: 0.1802243, a: 1}
