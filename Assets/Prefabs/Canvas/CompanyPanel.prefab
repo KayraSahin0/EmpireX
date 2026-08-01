@@ -677,7 +677,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -62.51375}
+  m_AnchoredPosition: {x: 423, y: -112.51375}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &483439424341875233
@@ -757,7 +757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -342.56873}
+  m_AnchoredPosition: {x: 423, y: -392.56873}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4498220801434297160
@@ -1659,7 +1659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -762.6512}
+  m_AnchoredPosition: {x: 423, y: -812.6512}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &931120412452175766
@@ -1814,7 +1814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -902.67865}
+  m_AnchoredPosition: {x: 423, y: -952.67865}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7236339702064197398
@@ -2003,6 +2003,7 @@ GameObject:
   - component: {fileID: 6209398615923993158}
   - component: {fileID: 4997422629908463490}
   - component: {fileID: 4581195149301612697}
+  - component: {fileID: 2944183050749563694}
   m_Layer: 5
   m_Name: CompanyPanel
   m_TagString: Untagged
@@ -2070,6 +2071,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2944183050749563694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063489724869466150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1988f6c593bc4114c9c49351bae03244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmpireX.UI::EmpireX.UI.CompanyPanel
+  BackBtn: {fileID: 2496837656929597813}
 --- !u!1 &3888377489918571524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,7 +2624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -202.54124}
+  m_AnchoredPosition: {x: 423, y: -252.54124}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7979230785920865983
@@ -2964,7 +2978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -622.6237}
+  m_AnchoredPosition: {x: 423, y: -672.6237}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8774998049562254104
@@ -3549,7 +3563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
   m_Content: {fileID: 1847090440766184237}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -3987,6 +4001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1847090440766184237}
   - component: {fileID: 4300825530588342343}
+  - component: {fileID: 958073859899393542}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -4035,8 +4050,8 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Top: 50
+    m_Bottom: 25
   m_ChildAlignment: 1
   m_Spacing: 15
   m_ChildForceExpandWidth: 1
@@ -4046,6 +4061,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &958073859899393542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731303764431786042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &6761263647727181054
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,7 +4176,7 @@ GameObject:
   - component: {fileID: 4431334982317401960}
   - component: {fileID: 4393647517427480820}
   - component: {fileID: 4588911379907397420}
-  - component: {fileID: 3987524517960801130}
+  - component: {fileID: 333686227852435915}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -4203,8 +4232,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -3289658733047416271, guid: d9a016814c2f6a740bb0789b97989994, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4213,7 +4242,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3987524517960801130
+--- !u!114 &333686227852435915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4222,10 +4251,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6780722764682575631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 385b7d1277b6c4007a84c065696e0f8c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
+  m_EditorClassIdentifier: Coffee.SoftMaskForUGUI::Coffee.UISoftMask.SoftMask
   m_ShowMaskGraphic: 0
+  m_MaskingMode: 0
+  m_AlphaHitTest: 0
+  m_SoftnessRange:
+    m_Min: 0
+    m_Max: 1
+  m_DownSamplingRate: 1
+  m_AntiAliasingThreshold: 0
+  m_Alpha: -1
+  m_Softness: -1
+  m_PartOfParent: 0
 --- !u!1 &6881583120883641231
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,7 +4304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -482.59625}
+  m_AnchoredPosition: {x: 423, y: -532.59625}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &574140591053965617

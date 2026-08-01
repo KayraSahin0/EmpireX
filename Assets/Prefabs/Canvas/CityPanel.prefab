@@ -492,7 +492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -202.54124}
+  m_AnchoredPosition: {x: 423, y: -252.54124}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4265813850180662962
@@ -571,7 +571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -622.6237}
+  m_AnchoredPosition: {x: 423, y: -672.6237}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1376725120234640272
@@ -725,7 +725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -762.6512}
+  m_AnchoredPosition: {x: 423, y: -812.6512}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &180561066863792654
@@ -804,7 +804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -482.59625}
+  m_AnchoredPosition: {x: 423, y: -532.59625}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1707654481710664171
@@ -883,7 +883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -62.51375}
+  m_AnchoredPosition: {x: 423, y: -112.51375}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9102968631204586388
@@ -2551,7 +2551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423, y: -342.56873}
+  m_AnchoredPosition: {x: 423, y: -392.56873}
   m_SizeDelta: {x: 846, y: 125.0275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6157742099015760859
@@ -2740,7 +2740,7 @@ GameObject:
   - component: {fileID: 392739527571917281}
   - component: {fileID: 6250705748229699371}
   - component: {fileID: 4107685361578396178}
-  - component: {fileID: 599603313431631431}
+  - component: {fileID: 7723789465580983608}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -2796,8 +2796,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -3289658733047416271, guid: d9a016814c2f6a740bb0789b97989994, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2806,7 +2806,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &599603313431631431
+--- !u!114 &7723789465580983608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2815,10 +2815,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5759253983904343299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 385b7d1277b6c4007a84c065696e0f8c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
+  m_EditorClassIdentifier: Coffee.SoftMaskForUGUI::Coffee.UISoftMask.SoftMask
   m_ShowMaskGraphic: 0
+  m_MaskingMode: 0
+  m_AlphaHitTest: 0
+  m_SoftnessRange:
+    m_Min: 0
+    m_Max: 1
+  m_DownSamplingRate: 1
+  m_AntiAliasingThreshold: 0
+  m_Alpha: -1
+  m_Softness: -1
+  m_PartOfParent: 0
 --- !u!1 &5818721660775763267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,6 +2976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8926636454925514458}
   - component: {fileID: 6166652745395266200}
+  - component: {fileID: 5997139432516943300}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2996,7 +3007,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 846, y: -86}
+  m_SizeDelta: {x: 846, y: 514.2913}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6166652745395266200
 MonoBehaviour:
@@ -3013,8 +3024,8 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Top: 50
+    m_Bottom: 25
   m_ChildAlignment: 1
   m_Spacing: 15
   m_ChildForceExpandWidth: 1
@@ -3024,6 +3035,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5997139432516943300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6160595864343160491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &6820412031010961329
 GameObject:
   m_ObjectHideFlags: 0
@@ -3114,7 +3139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
   m_Content: {fileID: 8926636454925514458}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -3553,6 +3578,7 @@ GameObject:
   - component: {fileID: 6448765009749643483}
   - component: {fileID: 4085394872934492257}
   - component: {fileID: 8451467257194577035}
+  - component: {fileID: 2013427653187596867}
   m_Layer: 5
   m_Name: CityPanel
   m_TagString: Untagged
@@ -3620,6 +3646,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2013427653187596867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932263061486542845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62754a81d79f08140a22ae5ca5ac2160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmpireX.UI::EmpireX.UI.CityPanel
+  BackBtn: {fileID: 7336310024746522057}
 --- !u!1 &7969327288939930603
 GameObject:
   m_ObjectHideFlags: 0

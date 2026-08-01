@@ -2241,6 +2241,7 @@ GameObject:
   - component: {fileID: 1291776045020868162}
   - component: {fileID: 8812004099525947621}
   - component: {fileID: 2624088827652798931}
+  - component: {fileID: 6683933609260560590}
   m_Layer: 5
   m_Name: "ResearchPanel (sirdaki kismi de\u011Fi\u015Ftirilecek)"
   m_TagString: Untagged
@@ -2311,6 +2312,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6683933609260560590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166956608299163766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f62909d4a5476649a8f08fad914d54c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmpireX.UI::EmpireX.UI.ResearchPanel
+  BackBtn: {fileID: 4510900585392457085}
 --- !u!1 &6520448379120927262
 GameObject:
   m_ObjectHideFlags: 0

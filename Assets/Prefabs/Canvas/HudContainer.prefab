@@ -125,6 +125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1489594268470290638}
+  - component: {fileID: 8495016854914113944}
   m_Layer: 5
   m_Name: LeftHudContainer
   m_TagString: Untagged
@@ -153,6 +154,34 @@ RectTransform:
   m_AnchoredPosition: {x: 249.66833, y: -0.06994629}
   m_SizeDelta: {x: 499.3366, y: 0.14}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8495016854914113944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414281592745899262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b772f5cda302c5544a0de820e2379a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmpireX.UI::EmpireX.UI.LeftHudUI
+  PlayerNameText: {fileID: 6794852473850445487}
+  PlayerLevelText: {fileID: 8556075924743245999}
+  CompanyButton: {fileID: 5171234547748194607}
+  HoldingButton: {fileID: 4266083546464765980}
+  EmployeesButton: {fileID: 4909434020651316585}
+  ResearchButton: {fileID: 6296140399976593540}
+  CityButton: {fileID: 6181228036769237752}
+  CountryButton: {fileID: 8537263402792425865}
+  ExchangeButton: {fileID: 2294053916323473885}
+  CompanyPanel: {fileID: 0}
+  HoldingPanel: {fileID: 0}
+  EmployeesPanel: {fileID: 0}
+  ResearchPanel: {fileID: 0}
+  CityPanel: {fileID: 0}
+  CountryPanel: {fileID: 0}
+  ExchangePanel: {fileID: 0}
 --- !u!1 &436251681301133936
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +514,7 @@ GameObject:
   - component: {fileID: 8647663001666940136}
   - component: {fileID: 4909434020651316585}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: EmployeesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,7 +710,7 @@ GameObject:
   - component: {fileID: 9151937508729379238}
   - component: {fileID: 8537263402792425865}
   m_Layer: 5
-  m_Name: Button (5)
+  m_Name: CountryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,7 +1514,7 @@ GameObject:
   - component: {fileID: 88401593920152977}
   - component: {fileID: 5171234547748194607}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CompanyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1606,7 +1635,7 @@ GameObject:
   - component: {fileID: 2772917574287997504}
   - component: {fileID: 6296140399976593540}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: ResearchButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3004,7 +3033,7 @@ GameObject:
   - component: {fileID: 7771992122606617403}
   - component: {fileID: 6181228036769237752}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: CityButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3526,7 +3555,7 @@ GameObject:
   - component: {fileID: 6560044219374979638}
   - component: {fileID: 2294053916323473885}
   m_Layer: 5
-  m_Name: Button (6)
+  m_Name: ExchangeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5284,7 +5313,7 @@ GameObject:
   - component: {fileID: 8982456129425136072}
   - component: {fileID: 4266083546464765980}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: HoldingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
