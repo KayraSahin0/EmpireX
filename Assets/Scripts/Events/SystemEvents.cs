@@ -33,5 +33,8 @@ namespace EmpireX.Events
         
         // Sadece teknik ortamda gösterilecek detaylar
         public string TechnicalDetails;
+
+        // Toast Popup desteği için (0'dan büyükse belirtilen saniye sonra kendi kapanır)
+        public float AutoCloseDuration;
     }
 }

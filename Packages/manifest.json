@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.coffee.softmask-for-ugui": "https://github.com/mob-sakai/SoftMaskForUGUI.git?path=Packages/src",
     "com.kayra.project-todo": "file:C:/Users/tosun/Desktop/ProjectTODOUnity",
     "com.unity.2d.animation": "13.0.4",
     "com.unity.2d.aseprite": "3.0.1",

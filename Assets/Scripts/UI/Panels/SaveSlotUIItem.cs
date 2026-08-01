@@ -28,15 +28,27 @@ namespace EmpireX.UI
 
         public void OnLoadClicked()
         {
-            if (EmpireX.Core.GameManager.Instance != null && EmpireX.Core.GameManager.Instance.SaveManager != null)
+            if (EmpireX.Core.GameManager.Instance != null && EmpireX.Core.GameManager.Instance.EventManager != null)
             {
-                EmpireX.Core.GameManager.Instance.SaveManager.LoadGame(_slotId);
-                
-                // Oyuncu oyuna başladığı/yüklediği an AutoSave özelliğini aktifleştiriyoruz
-                EmpireX.Core.GameManager.Instance.SaveManager.SetAutoSave(true);
-                
-                EmpireX.Core.GameManager.Instance.StartGameSimulation();
-                UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+                EmpireX.Core.GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
+                {
+                    Title = "Oyunu Yükle",
+                    Message = "Kaydedilmemiş veriler silinir, emin misiniz?",
+                    Severity = EmpireX.Events.ErrorSeverity.Warning,
+                    Button1Text = "Evet",
+                    Button1Callback = () => 
+                    {
+                        if (EmpireX.Core.GameManager.Instance.SaveManager != null)
+                        {
+                            EmpireX.Core.GameManager.Instance.SaveManager.LoadGame(_slotId);
+                            EmpireX.Core.GameManager.Instance.SaveManager.SetAutoSave(true);
+                            EmpireX.Core.GameManager.Instance.StartGameSimulation();
+                            EmpireX.Core.GameManager.Instance.SceneManager.LoadSceneAsync("GameScene");
+                        }
+                    },
+                    Button2Text = "Hayır",
+                    Button2Callback = () => {}
+                });
             }
         }
 

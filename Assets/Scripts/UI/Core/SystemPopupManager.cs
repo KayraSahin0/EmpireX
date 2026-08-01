@@ -20,6 +20,8 @@ namespace EmpireX.UI
         [SerializeField] private TMP_Text _messageText;
         [SerializeField] private TMP_Text _technicalDetailsText;
         
+        [SerializeField] private GameObject _buttonContainer;
+        
         [SerializeField] private Button _button1;
         [SerializeField] private TMP_Text _button1Text;
         
@@ -185,6 +187,12 @@ namespace EmpireX.UI
             SetupButton(_button1, _button1Text, e.Button1Text, e.Button1Callback, ref _button1Callback);
             SetupButton(_button2, _button2Text, e.Button2Text, e.Button2Callback, ref _button2Callback);
 
+            if (_buttonContainer != null)
+            {
+                bool hasAnyButton = !string.IsNullOrEmpty(e.Button1Text) || !string.IsNullOrEmpty(e.Button2Text);
+                _buttonContainer.SetActive(hasAnyButton);
+            }
+
             _popupRoot.SetActive(true);
             
             // Animasyonlar (DOTween)
@@ -193,6 +201,14 @@ namespace EmpireX.UI
             
             _popupWindow.localScale = Vector3.one * 0.8f;
             _popupWindow.DOScale(1f, 0.3f).SetEase(Ease.OutBack).SetUpdate(true);
+
+            if (e.AutoCloseDuration > 0)
+            {
+                DOVirtual.DelayedCall(e.AutoCloseDuration, () => 
+                {
+                    if (_popupRoot.activeSelf) ClosePopup();
+                }, ignoreTimeScale: true);
+            }
         }
 
         private void SetupButton(Button btn, TMP_Text btnText, string text, Action callback, ref Action storedCallback)

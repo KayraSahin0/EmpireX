@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373276eadf4268c4ebe06cbb3988bf6c, type: 3}
+  m_Name: EconomyConfig
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.EconomyConfig
+  StartingCash: 100000
+  DefaultTax: 0.2
+  DefaultInflation: 0.05
+  DefaultInterest: 0.1

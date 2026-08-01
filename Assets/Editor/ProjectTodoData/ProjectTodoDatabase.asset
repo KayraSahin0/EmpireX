@@ -20,9 +20,9 @@ MonoBehaviour:
       yerine ekrana yazd\u0131raca\u011F\u0131m\u0131z veya oyuncuyu bilgilendirmek
       i\xE7in kullanaca\u011Fimiz bir popUp yap"
     categoryId: 43f67495-a5b7-46c2-bcf2-832743e37dd1
-    isCompleted: 0
+    isCompleted: 1
     createdAtTicks: 639209564526045530
-    completedAtTicks: 0
+    completedAtTicks: 639211237330179789
   - id: 333ca1c5-196a-4df1-b830-46be990e4beb
     title: Loading Panel
     description: "Oyun ba\u015F\u0131ndaki loading paneli yap ve arkaplan resimleri
@@ -30,9 +30,9 @@ MonoBehaviour:
       olu\u015Ftur, config dosyas\u0131 i\xE7indeki foto\u011Fraflar\u0131n i\xE7inden
       rastgele se\xE7sin"
     categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
-    isCompleted: 0
+    isCompleted: 1
     createdAtTicks: 639209565599683699
-    completedAtTicks: 0
+    completedAtTicks: 639211237051135523
   - id: 9af23626-2bb3-48ea-ac97-ce14b26d647f
     title: GameScene UI
     description: "Oyun men\xFCs\xFCnde ki UIlar\u0131 d\xFCzelt ve gereken yeni UI
@@ -62,8 +62,25 @@ MonoBehaviour:
     description: "Ana men\xFCde panelleri MainMenuPanel scriptinde Start() fonksiyonu
       i\xE7erisinde panellerin kod ile kapal\u0131 duruma getirilsin"
     categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
-    isCompleted: 0
+    isCompleted: 1
     createdAtTicks: 639210258332963548
+    completedAtTicks: 639211237122935661
+  - id: 2c852c54-de90-419a-85d1-7779fc240b6c
+    title: "Time\u0130con De\u011Fi\u015Fimi"
+    description: "TimeIcon oyundadki saate g\xF6re de\u011Fi\u015Fmeli"
+    categoryId: bbfa3375-c82a-4740-a1ce-03bbd1c8f43d
+    isCompleted: 0
+    createdAtTicks: 639211236709098355
+    completedAtTicks: 0
+  - id: 6df821f5-7312-4373-97b9-73f443a01e1b
+    title: "\u015Eehirler"
+    description: "Kullan\u0131c\u0131n\u0131n se\xE7ti\u011Fi \u015Fehire g\xF6re
+      arkaplan de\u011Fi\u015Fecek dolay\u0131s\u0131yla ekrandaki \u015Firketlerde
+      de\u011Fi\u015Fecek. \u015Eehirlerin i\xE7indeki i\u015Fletmeler birbirinden
+      farkl\u0131 oldu\u011Fu i\xE7in se\xE7ilen \u015Fehrin haritas\u0131 a\xE7\u0131lmal\u0131."
+    categoryId: bbfa3375-c82a-4740-a1ce-03bbd1c8f43d
+    isCompleted: 0
+    createdAtTicks: 639211286968212417
     completedAtTicks: 0
   categories:
   - id: 43f67495-a5b7-46c2-bcf2-832743e37dd1
@@ -78,3 +95,6 @@ MonoBehaviour:
   - id: 8921ef24-db4e-4db4-be30-ded95fe2447f
     name: Config
     color: {r: 0.7862726, g: 0.8490566, b: 0.1802243, a: 1}
+  - id: bbfa3375-c82a-4740-a1ce-03bbd1c8f43d
+    name: Code-UI
+    color: {r: 0.42540178, g: 0.6037736, b: 0.20220721, a: 1}

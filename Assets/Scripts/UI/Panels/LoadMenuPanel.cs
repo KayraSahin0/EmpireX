@@ -8,7 +8,6 @@ namespace EmpireX.UI
     {
         public Transform SaveContainer; // ButonsContainer yerine SaveContainer
         public GameObject SaveSlotPrefab;
-        public BasePanel MainMenuPanel; // Geri dönmek için
 
         public override void Show()
         {
@@ -44,14 +43,7 @@ namespace EmpireX.UI
 
         public void OnBackClicked()
         {
-            if (MainMenuPanel != null)
-            {
-                UINavigation.Instance.ShowPanel(MainMenuPanel);
-            }
-            else
-            {
-                Hide();
-            }
+            UINavigation.Instance.GoBack();
         }
     }
 }

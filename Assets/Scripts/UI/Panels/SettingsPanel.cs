@@ -21,8 +21,6 @@ namespace EmpireX.UI
         public Slider AutomaticSaveSlider;
         public Slider NotificationSlider;
         
-        public BasePanel MainMenuPanel; // Geri dönmek için
-
         private void Start()
         {
             if (EffectVolumeSlider != null)
@@ -125,14 +123,7 @@ namespace EmpireX.UI
 
         public void OnBackClicked()
         {
-            if (MainMenuPanel != null)
-            {
-                UINavigation.Instance.ShowPanel(MainMenuPanel);
-            }
-            else
-            {
-                Hide();
-            }
+            UINavigation.Instance.GoBack();
         }
     }
 }

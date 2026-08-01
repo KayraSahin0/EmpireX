@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EmpireX.UI
@@ -10,8 +10,13 @@ namespace EmpireX.UI
     {
         public static UINavigation Instance { get; private set; }
 
+        public event System.Action<bool> OnPanelStateChanged;
+
         private Stack<BasePopup> _popupStack = new Stack<BasePopup>();
+        private Stack<BasePanel> _panelHistory = new Stack<BasePanel>();
         private BasePanel _currentPanel;
+
+        public BasePanel CurrentPanel => _currentPanel;
 
         private void Awake()
         {
@@ -19,13 +24,20 @@ namespace EmpireX.UI
             else Destroy(gameObject);
         }
 
-        public void ShowPanel(BasePanel panel)
+        public void ShowPanel(BasePanel panel, bool keepHistory = true)
         {
             if (_currentPanel != null)
+            {
+                if (keepHistory) 
+                    _panelHistory.Push(_currentPanel);
+                    
                 _currentPanel.Hide();
+            }
 
             _currentPanel = panel;
             _currentPanel.Show();
+            
+            OnPanelStateChanged?.Invoke(true);
         }
 
         public void ShowPopup(BasePopup popup)
@@ -38,6 +50,29 @@ namespace EmpireX.UI
         {
             if (_popupStack.Count > 0)
                 _popupStack.Pop();
+        }
+
+        public void GoBack()
+        {
+            if (_panelHistory.Count > 0)
+            {
+                if (_currentPanel != null)
+                    _currentPanel.Hide();
+
+                _currentPanel = _panelHistory.Pop();
+                _currentPanel.Show();
+            }
+            else
+            {
+                // Geri dönülecek panel yoksa, bu kök (root) paneldir. Sadece kapat.
+                if (_currentPanel != null)
+                {
+                    _currentPanel.Hide();
+                    _currentPanel = null;
+                    
+                    OnPanelStateChanged?.Invoke(false);
+                }
+            }
         }
     }
 }
