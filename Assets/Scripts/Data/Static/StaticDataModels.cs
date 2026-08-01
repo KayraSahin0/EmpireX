@@ -72,6 +72,7 @@ namespace EmpireX.Data
     {
         public string Id;
         public string Name;
+        public Sprite CountryLogo;
         public string Currency;
         public float Tax;
         public float Inflation;

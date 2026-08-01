@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Linq;
+using EmpireX.Core;
+using EmpireX.Data;
 
 namespace EmpireX.UI
 {
@@ -8,24 +12,73 @@ namespace EmpireX.UI
         [Header("Common References")]
         public Button BackBtn;
 
+        [Header("List Settings")]
+        public Transform CityScrollviewContent;
+        public GameObject CityPrefab;
+
+        private List<GameObject> _spawnedItems = new List<GameObject>();
+
         private void Start()
         {
-            if (BackBtn != null)
+            if (BackBtn != null) BackBtn.onClick.AddListener(OnBackClicked);
+        }
+
+        public override void Show()
+        {
+            base.Show();
+            PopulateList();
+        }
+
+        public override void ShowImmediate()
+        {
+            base.ShowImmediate();
+            PopulateList();
+        }
+
+        private void PopulateList()
+        {
+            foreach (var item in _spawnedItems) Destroy(item);
+            _spawnedItems.Clear();
+
+            if (CityScrollviewContent == null || CityPrefab == null) return;
+            if (GameManager.Instance == null || GameManager.Instance.SaveManager == null) return;
+            
+            var runtimeData = GameManager.Instance.SaveManager.CurrentData;
+            if (runtimeData == null || runtimeData.HoldingData == null) return;
+
+            var allCities = Resources.LoadAll<CitySO>("Configs");
+
+            // Eğer hiç açık şehir yoksa ilkini default olarak aç
+            if (runtimeData.HoldingData.CityIds.Count == 0 && allCities.Length > 0)
             {
-                BackBtn.onClick.AddListener(OnBackClicked);
+                runtimeData.HoldingData.CityIds.Add(allCities[0].Id);
+            }
+
+            foreach (var citySo in allCities)
+            {
+                var go = Instantiate(CityPrefab, CityScrollviewContent);
+                var uiItem = go.GetComponent<CityUIItem>();
+                if (uiItem != null)
+                {
+                    bool isUnlocked = runtimeData.HoldingData.CityIds.Contains(citySo.Id);
+                    
+                    // Bu şehirdeki şirket ve şube sayısını bul
+                    int corpCount = 0;
+                    if (runtimeData.Companies != null)
+                        corpCount += runtimeData.Companies.Count(c => c.CityId == citySo.Id);
+                    if (runtimeData.Branches != null)
+                        corpCount += runtimeData.Branches.Count(b => b.CityId == citySo.Id);
+
+                    uiItem.Setup(citySo, isUnlocked, corpCount);
+                }
+                _spawnedItems.Add(go);
             }
         }
 
         private void OnBackClicked()
         {
-            if (UINavigation.Instance != null)
-            {
-                UINavigation.Instance.GoBack();
-            }
-            else
-            {
-                Hide();
-            }
+            if (UINavigation.Instance != null) UINavigation.Instance.GoBack();
+            else Hide();
         }
     }
 }

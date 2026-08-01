@@ -11,7 +11,7 @@ namespace EmpireX.Data
         HoldingLevel
     }
 
-    [CreateAssetMenu(fileName = "NewAchievement", menuName = "EmpireX/Achievement")]
+    [CreateAssetMenu(fileName = "NewAchievement", menuName = "EmpireX/Data/Achievement")]
     public class AchievementSO : ScriptableObject
     {
         public string Id;

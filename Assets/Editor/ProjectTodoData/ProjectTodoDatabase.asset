@@ -38,17 +38,17 @@ MonoBehaviour:
     description: "Oyun men\xFCs\xFCnde ki UIlar\u0131 d\xFCzelt ve gereken yeni UI
       lar\u0131 yap (\xE7al\u0131\u015Fan almak, \xFClke \u015Fehir a\xE7mak vb.)"
     categoryId: 43f67495-a5b7-46c2-bcf2-832743e37dd1
-    isCompleted: 0
+    isCompleted: 1
     createdAtTicks: 639209566532407358
-    completedAtTicks: 0
+    completedAtTicks: 639212139738267450
   - id: 1a06541c-766b-40cc-83e4-dad12e04d385
     title: "Oyun ekran\u0131ndaki UIlar\u0131 koda ba\u011Fla"
-    description: "Oyun ekran\u0131ndaki UIlar\u0131 koda ba\u011Fla hepsini test
-      et tek tek ilerle Bu g\xF6revi a\u015Famalara b\xF6l"
+    description: "hud ekran\u0131ndaki UIlar\u0131 koda ba\u011Fla hepsini test et
+      tek tek ilerle Bu g\xF6revi a\u015Famalara b\xF6l"
     categoryId: 
-    isCompleted: 0
+    isCompleted: 1
     createdAtTicks: 639209567065923517
-    completedAtTicks: 0
+    completedAtTicks: 639212139951142991
   - id: e3753c8d-0281-461d-b053-4fc9b3146d2e
     title: "Config dosyalar\u0131 olu\u015Ftur"
     description: "AI ile config dosyalar\u0131 olu\u015Ftur ba\u015Flang\u0131\xE7
@@ -69,9 +69,9 @@ MonoBehaviour:
     title: "Time\u0130con De\u011Fi\u015Fimi"
     description: "TimeIcon oyundadki saate g\xF6re de\u011Fi\u015Fmeli"
     categoryId: bbfa3375-c82a-4740-a1ce-03bbd1c8f43d
-    isCompleted: 0
+    isCompleted: 1
     createdAtTicks: 639211236709098355
-    completedAtTicks: 0
+    completedAtTicks: 639212140115227851
   - id: 6df821f5-7312-4373-97b9-73f443a01e1b
     title: "\u015Eehirler"
     description: "Kullan\u0131c\u0131n\u0131n se\xE7ti\u011Fi \u015Fehire g\xF6re
@@ -81,6 +81,14 @@ MonoBehaviour:
     categoryId: bbfa3375-c82a-4740-a1ce-03bbd1c8f43d
     isCompleted: 0
     createdAtTicks: 639211286968212417
+    completedAtTicks: 0
+  - id: 60fa8123-82f2-4f57-bb2f-bd80284b9fe7
+    title: "Panel tasar\u0131mlar\u0131 yap"
+    description: "Eksik panelleri yap, var olanlar\u0131n baz\u0131lar\u0131n\u0131n
+      g\xFCncellensmesi gerek"
+    categoryId: 43f67495-a5b7-46c2-bcf2-832743e37dd1
+    isCompleted: 0
+    createdAtTicks: 639212139660032742
     completedAtTicks: 0
   categories:
   - id: 43f67495-a5b7-46c2-bcf2-832743e37dd1
