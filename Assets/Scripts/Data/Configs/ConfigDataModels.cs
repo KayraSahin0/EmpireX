@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace EmpireX.Data
 {
@@ -15,8 +15,21 @@ namespace EmpireX.Data
     public class TimeConfig : ScriptableObject
     {
         public float TickDuration = 1f;
+        public int TicksPerDay = 24; // 1 günde kaç Tick (saat) var?
         public int DaysPerMonth = 30;
         public int MonthsPerYear = 12;
+    }
+
+    [CreateAssetMenu(fileName = "TimeIconConfig", menuName = "EmpireX/Config/TimeIcon")]
+    public class TimeIconConfig : ScriptableObject
+    {
+        [Header("Zaman İkonları (0-24 saat aralığı için)")]
+        [Tooltip("00:00 - 04:00 arası")] public Sprite MidnightIcon;
+        [Tooltip("04:00 - 08:00 arası")] public Sprite SunriseIcon;
+        [Tooltip("08:00 - 12:00 arası")] public Sprite SmallSunIcon;
+        [Tooltip("12:00 - 16:00 arası")] public Sprite SunIcon;
+        [Tooltip("16:00 - 20:00 arası")] public Sprite SunsetIcon;
+        [Tooltip("20:00 - 24:00 arası")] public Sprite NightIcon;
     }
 
     [CreateAssetMenu(fileName = "GameplayConfig", menuName = "EmpireX/Config/Gameplay")]

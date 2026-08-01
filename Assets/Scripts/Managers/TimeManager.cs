@@ -1,4 +1,4 @@
-﻿using EmpireX.Events;
+using EmpireX.Events;
 using EmpireX.Data;
 
 namespace EmpireX.Core
@@ -12,8 +12,11 @@ namespace EmpireX.Core
         private TimeData _timeData;
         private TimeConfig _timeConfig;
         
+        public TimeData CurrentTime => _timeData;
+        
         private float _tickTimer;
         private bool _isPaused = true;
+        private float _speedMultiplier = 1f;
 
         public TimeManager(IEventBus eventBus, ConfigSystem configSystem) : base(eventBus) 
         {
@@ -33,9 +36,20 @@ namespace EmpireX.Core
             {
                 _timeConfig = UnityEngine.ScriptableObject.CreateInstance<TimeConfig>();
                 _timeConfig.TickDuration = 1f;
+                _timeConfig.TicksPerDay = 24;
                 _timeConfig.DaysPerMonth = 30;
                 _timeConfig.MonthsPerYear = 12;
             }
+            
+#if UNITY_EDITOR
+            // Eğer editörde test için doğrudan GameScene açıldıysa zamanı zorla başlat
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameScene")
+            {
+                _isPaused = false;
+                if (_timeData == null) 
+                    _timeData = new TimeData { Day = 1, Month = 1, Year = 1, Tick = 0, Week = 1 };
+            }
+#endif
         }
 
         public override void Dispose()
@@ -68,7 +82,7 @@ namespace EmpireX.Core
         {
             if (_isPaused || _timeData == null) return;
 
-            _tickTimer += deltaTime;
+            _tickTimer += deltaTime * _speedMultiplier;
             if (_tickTimer >= _timeConfig.TickDuration)
             {
                 _tickTimer -= _timeConfig.TickDuration;
@@ -78,46 +92,70 @@ namespace EmpireX.Core
 
         private void ProcessTick()
         {
-            _eventBus.Publish(new TickStarted { Tick = _timeData.Tick });
-
             _timeData.Tick++;
-            _timeData.Day++;
 
+            bool newDay = false;
             bool newWeek = false;
             bool newMonth = false;
             bool newYear = false;
 
-            if (_timeData.Day > 7 && _timeData.Day % 7 == 1)
+            // Eğer bir gün için gereken saat (tick) dolduysa
+            if (_timeData.Tick % _timeConfig.TicksPerDay == 0)
             {
-                _timeData.Week++;
-                newWeek = true;
-            }
+                _timeData.Day++;
+                newDay = true;
 
-            if (_timeData.Day > _timeConfig.DaysPerMonth)
-            {
-                _timeData.Day = 1;
-                _timeData.Month++;
-                newMonth = true;
-
-                if (_timeData.Month > _timeConfig.MonthsPerYear)
+                if (_timeData.Day > 7 && _timeData.Day % 7 == 1)
                 {
-                    _timeData.Month = 1;
-                    _timeData.Year++;
-                    newYear = true;
+                    _timeData.Week++;
+                    newWeek = true;
+                }
+
+                if (_timeData.Day > _timeConfig.DaysPerMonth)
+                {
+                    _timeData.Day = 1;
+                    _timeData.Month++;
+                    newMonth = true;
+
+                    if (_timeData.Month > _timeConfig.MonthsPerYear)
+                    {
+                        _timeData.Month = 1;
+                        _timeData.Year++;
+                        newYear = true;
+                    }
                 }
             }
 
-            _eventBus.Publish(new DayStarted { Day = _timeData.Day });
-            if (newWeek) _eventBus.Publish(new WeekStarted { Week = _timeData.Week });
-            if (newMonth) _eventBus.Publish(new MonthStarted { Month = _timeData.Month });
-            if (newYear) _eventBus.Publish(new YearStarted { Year = _timeData.Year });
+            // Olayları yayımla (Sadece tick attığını bildir, UI saati hesaplayıp kullanacak)
+            _eventBus.Publish(new TickStarted { Tick = _timeData.Tick });
 
-            _eventBus.Publish(new DayEnded { Day = _timeData.Day });
-            if (newWeek) _eventBus.Publish(new WeekEnded { Week = _timeData.Week });
-            if (newMonth) _eventBus.Publish(new MonthEnded { Month = _timeData.Month });
-            if (newYear) _eventBus.Publish(new YearEnded { Year = _timeData.Year });
-
+            if (newDay) 
+            {
+                _eventBus.Publish(new DayStarted { Day = _timeData.Day });
+                _eventBus.Publish(new DayEnded { Day = _timeData.Day });
+            }
+            if (newWeek) 
+            {
+                _eventBus.Publish(new WeekStarted { Week = _timeData.Week });
+                _eventBus.Publish(new WeekEnded { Week = _timeData.Week });
+            }
+            if (newMonth) 
+            {
+                _eventBus.Publish(new MonthStarted { Month = _timeData.Month });
+                _eventBus.Publish(new MonthEnded { Month = _timeData.Month });
+            }
+            if (newYear) 
+            {
+                _eventBus.Publish(new YearStarted { Year = _timeData.Year });
+                _eventBus.Publish(new YearEnded { Year = _timeData.Year });
+            }
+            
             _eventBus.Publish(new TickCompleted { Tick = _timeData.Tick });
+        }
+
+        public void SetSpeedMultiplier(float multiplier)
+        {
+            _speedMultiplier = multiplier;
         }
     }
 }

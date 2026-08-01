@@ -28,6 +28,7 @@ namespace EmpireX.Data
         public double TotalExpense;
         public double TotalProfit;
         public int TotalEmployees;
+        public double ResearchPoints;
         public List<string> CompanyIds = new List<string>();
         public List<string> CountryIds = new List<string>();
         public List<string> CityIds = new List<string>();

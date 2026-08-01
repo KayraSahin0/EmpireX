@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: TimeIconConfig
+  m_EditorClassIdentifier: EmpireX.Data:EmpireX.Data:TimeIconConfig
+  MidnightIcon: {fileID: 21300000, guid: add94e266a58f3243bab078d3cf83f8b, type: 3}
+  SunriseIcon: {fileID: 21300000, guid: 8f2084064cd2c9b46a01c81efe6ea55a, type: 3}
+  SmallSunIcon: {fileID: 21300000, guid: 32598711c9b48264b80249085e009f92, type: 3}
+  SunIcon: {fileID: 21300000, guid: 77e030a1b4a1a7f418e90296dad9bc86, type: 3}
+  SunsetIcon: {fileID: 21300000, guid: f5ec7aa9102e9a04cb061020e7a60696, type: 3}
+  NightIcon: {fileID: 21300000, guid: 6caedbf99294dad429b945bf59359be9, type: 3}

@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: SlowTimeConfig
+  m_Name: TimeConfig
   m_EditorClassIdentifier: EmpireX.Data:EmpireX.Data:TimeConfig
-  TickDuration: 5
+  TickDuration: 1
+  TicksPerDay: 24
   DaysPerMonth: 30
   MonthsPerYear: 12

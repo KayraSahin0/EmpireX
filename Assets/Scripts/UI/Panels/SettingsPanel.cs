@@ -47,6 +47,15 @@ namespace EmpireX.UI
                     AutomaticSaveSlider.SetValueWithoutNotify(GameManager.Instance.SaveManager.IsAutoSaveEnabled ? 1 : 0);
                 }
             }
+            
+            // Eğer TimeSpeedDropdown yeni ayarlandıysa varsayılan olarak 1 (Normal) seçili gelsin
+            if (TimeSpeedDropdown != null && TimeSpeedDropdown.value != 1 && TimeSpeedDropdown.value == 0)
+            {
+                // Uygulama ilk açıldığında veya default durumdaysa Normal yapıyoruz
+                // Not: Kalıcı PlayerPrefs/Config eklendiğinde bu değer oradan okunabilir.
+                TimeSpeedDropdown.SetValueWithoutNotify(1); 
+                OnTimeSpeedChanged(1);
+            }
         }
 
         private void OnEffectVolumeChanged(float value)
@@ -72,7 +81,21 @@ namespace EmpireX.UI
 
         private void OnTimeSpeedChanged(int index)
         {
-            // 0: Yavaş, 1: Normal
+            if (GameManager.Instance != null && GameManager.Instance.TimeManager != null)
+            {
+                // Kullanıcının belirttiği sıraya göre:
+                // 0: Hızlı (2.5x)
+                // 1: Normal (1.0x)
+                // 2: Yavaş (0.8x)
+                
+                float multiplier = 1f;
+                
+                if (index == 0) multiplier = 2.5f;
+                else if (index == 1) multiplier = 1f;
+                else if (index == 2) multiplier = 0.8f;
+                
+                GameManager.Instance.TimeManager.SetSpeedMultiplier(multiplier);
+            }
         }
 
         private void OnAutoSaveChanged(float value)
