@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using EmpireX.Core;
@@ -21,51 +21,106 @@ namespace EmpireX.UI
         public Slider AutomaticSaveSlider;
         public Slider NotificationSlider;
         
+        private bool _isInitializing = false;
+
         private void Start()
         {
-            if (EffectVolumeSlider != null)
-                EffectVolumeSlider.onValueChanged.AddListener(OnEffectVolumeChanged);
-            if (MusicVolumeSlider != null)
-                MusicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
-            if (LanguageDropdown != null)
-                LanguageDropdown.onValueChanged.AddListener(OnLanguageChanged);
-            if (TimeSpeedDropdown != null)
-                TimeSpeedDropdown.onValueChanged.AddListener(OnTimeSpeedChanged);
-            if (AutomaticSaveSlider != null)
-                AutomaticSaveSlider.onValueChanged.AddListener(OnAutoSaveChanged);
-            if (NotificationSlider != null)
-                NotificationSlider.onValueChanged.AddListener(OnNotificationChanged);
+            if (EffectVolumeSlider != null) EffectVolumeSlider.onValueChanged.AddListener(OnEffectVolumeChanged);
+            if (MusicVolumeSlider != null) MusicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
+            if (LanguageDropdown != null) LanguageDropdown.onValueChanged.AddListener(OnLanguageChanged);
+            if (TimeSpeedDropdown != null) TimeSpeedDropdown.onValueChanged.AddListener(OnTimeSpeedChanged);
+            if (AutomaticSaveSlider != null) AutomaticSaveSlider.onValueChanged.AddListener(OnAutoSaveChanged);
+            if (NotificationSlider != null) NotificationSlider.onValueChanged.AddListener(OnNotificationChanged);
+
+            LoadSettings();
         }
 
         private void OnEnable()
         {
-            if (GameManager.Instance != null && GameManager.Instance.SaveManager != null)
+            LoadSettings();
+        }
+
+        private void LoadSettings()
+        {
+            _isInitializing = true;
+
+            // Effect Volume
+            if (EffectVolumeSlider != null)
             {
-                if (AutomaticSaveSlider != null)
+                float ev = PlayerPrefs.GetFloat("Prefs_EffectVolume", 1f);
+                EffectVolumeSlider.value = ev;
+                UpdateEffectVolumeUI(ev);
+            }
+
+            // Music Volume
+            if (MusicVolumeSlider != null)
+            {
+                float mv = PlayerPrefs.GetFloat("Prefs_MusicVolume", 1f);
+                MusicVolumeSlider.value = mv;
+                UpdateMusicVolumeUI(mv);
+            }
+
+            // Language
+            if (LanguageDropdown != null)
+            {
+                int lang = PlayerPrefs.GetInt("Prefs_Language", 0);
+                LanguageDropdown.value = lang;
+                UpdateLanguageUI(lang);
+            }
+
+            // Time Speed
+            if (TimeSpeedDropdown != null)
+            {
+                // Varsayılan hız 1 (Normal)
+                int speed = PlayerPrefs.GetInt("Prefs_TimeSpeed", 1);
+                TimeSpeedDropdown.value = speed;
+                ApplyTimeSpeed(speed);
+            }
+
+            // Auto Save
+            if (AutomaticSaveSlider != null)
+            {
+                int autoSave = PlayerPrefs.GetInt("Prefs_AutoSave", 1);
+                AutomaticSaveSlider.value = autoSave;
+                if (GameManager.Instance != null && GameManager.Instance.SaveManager != null)
                 {
-                    // Menü açıldığında slider'ı backend verisiyle güncelle (Event tetiklemeden)
-                    AutomaticSaveSlider.SetValueWithoutNotify(GameManager.Instance.SaveManager.IsAutoSaveEnabled ? 1 : 0);
+                    GameManager.Instance.SaveManager.SetAutoSave(autoSave == 1);
                 }
             }
-            
-            // Eğer TimeSpeedDropdown yeni ayarlandıysa varsayılan olarak 1 (Normal) seçili gelsin
-            if (TimeSpeedDropdown != null && TimeSpeedDropdown.value != 1 && TimeSpeedDropdown.value == 0)
+
+            // Notifications
+            if (NotificationSlider != null)
             {
-                // Uygulama ilk açıldığında veya default durumdaysa Normal yapıyoruz
-                // Not: Kalıcı PlayerPrefs/Config eklendiğinde bu değer oradan okunabilir.
-                TimeSpeedDropdown.SetValueWithoutNotify(1); 
-                OnTimeSpeedChanged(1);
+                int notif = PlayerPrefs.GetInt("Prefs_Notifications", 1);
+                NotificationSlider.value = notif;
             }
+
+            _isInitializing = false;
         }
 
         private void OnEffectVolumeChanged(float value)
         {
+            if (_isInitializing) return;
+            PlayerPrefs.SetFloat("Prefs_EffectVolume", value);
+            PlayerPrefs.Save();
+            UpdateEffectVolumeUI(value);
+        }
+
+        private void UpdateEffectVolumeUI(float value)
+        {
             if (EffectVolumePercentText != null)
                 EffectVolumePercentText.text = $"{(value * 100):0}%";
-            // TODO: ConfigSystem üzerinden ayar kaydı yapılabilir
         }
 
         private void OnMusicVolumeChanged(float value)
+        {
+            if (_isInitializing) return;
+            PlayerPrefs.SetFloat("Prefs_MusicVolume", value);
+            PlayerPrefs.Save();
+            UpdateMusicVolumeUI(value);
+        }
+
+        private void UpdateMusicVolumeUI(float value)
         {
             if (MusicVolumePercentText != null)
                 MusicVolumePercentText.text = $"{(value * 100):0}%";
@@ -73,7 +128,15 @@ namespace EmpireX.UI
 
         private void OnLanguageChanged(int index)
         {
-            if (LanguageIcon != null && LanguageDropdown.options.Count > index)
+            if (_isInitializing) return;
+            PlayerPrefs.SetInt("Prefs_Language", index);
+            PlayerPrefs.Save();
+            UpdateLanguageUI(index);
+        }
+
+        private void UpdateLanguageUI(int index)
+        {
+            if (LanguageIcon != null && LanguageDropdown != null && LanguageDropdown.options.Count > index)
             {
                 LanguageIcon.sprite = LanguageDropdown.options[index].image;
             }
@@ -81,18 +144,20 @@ namespace EmpireX.UI
 
         private void OnTimeSpeedChanged(int index)
         {
+            if (_isInitializing) return;
+            PlayerPrefs.SetInt("Prefs_TimeSpeed", index);
+            PlayerPrefs.Save();
+            ApplyTimeSpeed(index);
+        }
+
+        private void ApplyTimeSpeed(int index)
+        {
             if (GameManager.Instance != null && GameManager.Instance.TimeManager != null)
             {
-                // Kullanıcının belirttiği sıraya göre:
-                // 0: Hızlı (2.5x)
-                // 1: Normal (1.0x)
-                // 2: Yavaş (0.8x)
-                
                 float multiplier = 1f;
-                
-                if (index == 0) multiplier = 2.5f;
-                else if (index == 1) multiplier = 1f;
-                else if (index == 2) multiplier = 0.8f;
+                if (index == 0) multiplier = 2.5f;      // Hızlı
+                else if (index == 1) multiplier = 1f;   // Normal
+                else if (index == 2) multiplier = 0.8f; // Yavaş
                 
                 GameManager.Instance.TimeManager.SetSpeedMultiplier(multiplier);
             }
@@ -100,53 +165,35 @@ namespace EmpireX.UI
 
         private void OnAutoSaveChanged(float value)
         {
-            bool isAutoSave = value > 0.5f;
-            
-            if (!isAutoSave)
+            if (_isInitializing) return;
+            int intVal = Mathf.RoundToInt(value);
+            PlayerPrefs.SetInt("Prefs_AutoSave", intVal);
+            PlayerPrefs.Save();
+
+            if (GameManager.Instance != null && GameManager.Instance.SaveManager != null)
             {
-                if (GameManager.Instance != null && GameManager.Instance.EventManager != null)
-                {
-                    GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
-                    {
-                        Title = "Otomatik Kayıt Kapatılıyor",
-                        Message = "Kapatmak istediğinize emin misiniz?",
-                        Severity = EmpireX.Events.ErrorSeverity.Warning,
-                        Button1Text = "Evet",
-                        Button1Callback = () => 
-                        {
-                            if (GameManager.Instance.SaveManager != null)
-                            {
-                                GameManager.Instance.SaveManager.SetAutoSave(false);
-                            }
-                            if (AutomaticSaveSlider != null) AutomaticSaveSlider.SetValueWithoutNotify(0);
-                        },
-                        Button2Text = "Hayır",
-                        Button2Callback = () => 
-                        {
-                            if (AutomaticSaveSlider != null) AutomaticSaveSlider.SetValueWithoutNotify(1);
-                        }
-                    });
-                }
-            }
-            else
-            {
-                if (GameManager.Instance != null && GameManager.Instance.SaveManager != null)
-                {
-                    GameManager.Instance.SaveManager.SetAutoSave(true);
-                }
-                if (AutomaticSaveSlider != null) AutomaticSaveSlider.SetValueWithoutNotify(1);
+                GameManager.Instance.SaveManager.SetAutoSave(intVal == 1);
             }
         }
 
         private void OnNotificationChanged(float value)
         {
-            bool isNotifOn = value > 0.5f;
-            if (NotificationSlider != null) NotificationSlider.value = isNotifOn ? 1 : 0;
+            if (_isInitializing) return;
+            int intVal = Mathf.RoundToInt(value);
+            PlayerPrefs.SetInt("Prefs_Notifications", intVal);
+            PlayerPrefs.Save();
         }
 
         public void OnBackClicked()
         {
-            UINavigation.Instance.GoBack();
+            if (UINavigation.Instance != null)
+            {
+                UINavigation.Instance.GoBack();
+            }
+            else
+            {
+                Hide();
+            }
         }
     }
 }

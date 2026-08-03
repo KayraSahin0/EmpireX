@@ -90,6 +90,27 @@ MonoBehaviour:
     isCompleted: 0
     createdAtTicks: 639212139660032742
     completedAtTicks: 0
+  - id: 96d99299-e2a6-4096-83dd-2c1d9f520386
+    title: "Ba\u015Far\u0131lar Panelinde"
+    description: "Ba\u015Far\u0131lar panelinin i\xE7indeki toplam ba\u015Far\u0131m
+      say\u0131s\u0131n\u0131 confige ba\u011Fl\u0131caz"
+    categoryId: bbfa3375-c82a-4740-a1ce-03bbd1c8f43d
+    isCompleted: 0
+    createdAtTicks: 639212832191305594
+    completedAtTicks: 0
+  - id: 266e944a-a4c7-4b64-a266-e2193c6cbcc2
+    title: "----Oyun ak\u0131\u015F\u0131------ \xD6NEML\u0130"
+    description: "Oyuncu ba\u015Flang\u0131\xE7ta \xFClke ve \u015Fehir se\xE7erek
+      oyunu ba\u015Flat\u0131r. Her \u015Fehrin farkl\u0131 \u015Firket kurma s\u0131n\u0131r\u0131
+      bulunur. bulundu\u011Fu \u015Fehirde \u015Firketler kurar ve holdingini b\xFCy\xFCtmeye
+      ba\u015Flar \xE7al\u0131\u015Fanlar al\u0131r \u015Fubeler kurar farkl\u0131
+      \u015Fehirlere ve \xFClkelere a\xE7\u0131l\u0131r. Ara\u015Ft\u0131rmalar ile
+      ekstra bonuslar ve a\xE7abilece\u011Fi farkl\u0131 \u015Firket sekt\xF6rleri
+      kazan\u0131r."
+    categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
+    isCompleted: 0
+    createdAtTicks: 639213840828538562
+    completedAtTicks: 0
   categories:
   - id: 43f67495-a5b7-46c2-bcf2-832743e37dd1
     name: UI

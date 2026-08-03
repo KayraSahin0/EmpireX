@@ -1,17 +1,162 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections.Generic;
 using EmpireX.Core;
+using EmpireX.Data;
 
 namespace EmpireX.UI
 {
     public class NewGamePanel : BasePanel
     {
+        [Header("Screens")]
+        public GameObject FirstScreen;
+        public GameObject SecondScreen;
+
+        [Header("First Screen References")]
         public TMP_InputField CeoNameIF;
         public TMP_InputField HoldingNameIF;
         public BasePanel MainMenuPanel; // Geri dönmek için
 
-        public void OnStartGameClicked()
+        [Header("Second Screen References")]
+        public TMP_Dropdown CountryDropdown;
+        public TMP_Dropdown CityDropdown;
+        public UnityEngine.UI.Button PlayBtn;
+
+        private List<CountrySO> _allCountries = new List<CountrySO>();
+        private List<CitySO> _allCities = new List<CitySO>();
+        private List<CitySO> _currentCountryCities = new List<CitySO>();
+
+        public override void Show()
+        {
+            base.Show();
+            ResetPanel();
+        }
+
+        public override void ShowImmediate()
+        {
+            base.ShowImmediate();
+            ResetPanel();
+        }
+
+        private void ResetPanel()
+        {
+            if (FirstScreen != null) FirstScreen.SetActive(true);
+            if (SecondScreen != null) SecondScreen.SetActive(false);
+
+            if (CeoNameIF != null) CeoNameIF.text = "";
+            if (HoldingNameIF != null) HoldingNameIF.text = "";
+
+            LoadDropdownData();
+        }
+
+        private void LoadDropdownData()
+        {
+            _allCountries.Clear();
+            _allCountries.AddRange(Resources.LoadAll<CountrySO>("Configs"));
+            
+            _allCities.Clear();
+            _allCities.AddRange(Resources.LoadAll<CitySO>("Configs"));
+
+            if (CountryDropdown != null)
+            {
+                CountryDropdown.ClearOptions();
+                var options = new List<string>();
+                options.Add("Ülke Seçiniz..."); // Index 0 (Placeholder)
+                
+                foreach (var country in _allCountries)
+                {
+                    options.Add(country.Name);
+                }
+                CountryDropdown.AddOptions(options);
+                CountryDropdown.value = 0; // Placeholder seçili
+
+                CountryDropdown.onValueChanged.RemoveAllListeners();
+                CountryDropdown.onValueChanged.AddListener(OnCountrySelected);
+            }
+
+            if (CityDropdown != null)
+            {
+                CityDropdown.ClearOptions();
+                CityDropdown.AddOptions(new List<string> { "Önce Ülke Seçiniz..." });
+                CityDropdown.value = 0;
+                CityDropdown.interactable = false;
+            }
+            
+            if (PlayBtn != null)
+            {
+                PlayBtn.interactable = false; // Şehir seçilene kadar kapalı tutalım
+            }
+        }
+
+        private void OnCountrySelected(int index)
+        {
+            // index 0 "Ülke Seçiniz..." olduğu için gerçek ülke indexi index - 1 olur
+            if (index == 0) 
+            {
+                if (CityDropdown != null)
+                {
+                    CityDropdown.ClearOptions();
+                    CityDropdown.AddOptions(new List<string> { "Önce Ülke Seçiniz..." });
+                    CityDropdown.value = 0;
+                    CityDropdown.interactable = false;
+                }
+                if (PlayBtn != null) PlayBtn.interactable = false;
+                return;
+            }
+
+            int countryIndex = index - 1;
+            if (countryIndex < 0 || countryIndex >= _allCountries.Count) return;
+
+            var selectedCountry = _allCountries[countryIndex];
+            
+            if (CityDropdown != null)
+            {
+                CityDropdown.ClearOptions();
+                _currentCountryCities.Clear();
+                var options = new List<string>();
+                options.Add("Şehir Seçiniz..."); // Placeholder
+
+                foreach (var city in _allCities)
+                {
+                    if (city.CountryId == selectedCountry.Id)
+                    {
+                        _currentCountryCities.Add(city);
+                        options.Add(city.Name);
+                    }
+                }
+
+                if (_currentCountryCities.Count == 0)
+                {
+                    options.Add("Şehir Bulunamadı");
+                    CityDropdown.interactable = false;
+                }
+                else
+                {
+                    CityDropdown.interactable = true;
+                }
+
+                CityDropdown.AddOptions(options);
+                CityDropdown.value = 0;
+
+                CityDropdown.onValueChanged.RemoveAllListeners();
+                CityDropdown.onValueChanged.AddListener(OnCitySelected);
+            }
+
+            if (PlayBtn != null) PlayBtn.interactable = false;
+        }
+
+        private void OnCitySelected(int index)
+        {
+            if (PlayBtn != null)
+            {
+                // index 0 "Şehir Seçiniz..." placeholder'ı, 0'dan büyükse geçerli bir şehir seçilmiş demektir.
+                PlayBtn.interactable = index > 0;
+            }
+        }
+
+        // Önceden StartGameBtn ile bağlıydı, şimdi 1. Ekrandaki Next/İleri butonuyla bağlanmalı
+        public void OnNextClicked() 
         {
             string ceoName = CeoNameIF.text;
             string holdingName = HoldingNameIF.text;
@@ -22,21 +167,39 @@ namespace EmpireX.UI
                 return;
             }
 
+            if (FirstScreen != null) FirstScreen.SetActive(false);
+            if (SecondScreen != null) SecondScreen.SetActive(true);
+        }
+
+        // İkinci ekrandaki PlayBtn (Oyna) butonuna bağlanmalı
+        public void OnStartGameClicked() 
+        {
+            string ceoName = CeoNameIF.text;
+            string holdingName = HoldingNameIF.text;
+
             Debug.Log($"[NewGamePanel] Yeni oyun başlatılıyor... CEO: {ceoName}, Holding: {holdingName}");
 
             if (GameManager.Instance != null && GameManager.Instance.SaveManager != null)
             {
                 Debug.Log("[NewGamePanel] GameManager bulundu, Save Data oluşturuluyor...");
-                // Yeni veri oluşturup SaveManager içine inject edelim
                 var newData = new EmpireX.Data.SaveData();
                 newData.ValidateAndInitializeMissing();
                 newData.PlayerData.PlayerName = ceoName;
                 newData.HoldingData.Name = holdingName;
 
-                GameManager.Instance.SaveManager.SetCurrentData(newData, holdingName);
-                GameManager.Instance.SaveManager.ManualSave(holdingName); // Holding adıyla kaydet
+                // Seçilen Ülke ve Şehri Holding verisine ekle
+                if (CountryDropdown != null && CountryDropdown.value > 0)
+                {
+                    newData.HoldingData.CountryIds.Add(_allCountries[CountryDropdown.value - 1].Id);
+                }
                 
-                // Oyuncu yeni bir oyuna başladığında AutoSave özelliğini varsayılan olarak açıyoruz
+                if (CityDropdown != null && CityDropdown.value > 0)
+                {
+                    newData.HoldingData.CityIds.Add(_currentCountryCities[CityDropdown.value - 1].Id);
+                }
+
+                GameManager.Instance.SaveManager.SetCurrentData(newData, holdingName);
+                GameManager.Instance.SaveManager.ManualSave(holdingName); 
                 GameManager.Instance.SaveManager.SetAutoSave(true);
                 
                 Debug.Log($"[NewGamePanel] Save dosyası başarıyla oluşturuldu. Dosya Adı: {holdingName}");
@@ -60,13 +223,22 @@ namespace EmpireX.UI
 
         public void OnBackClicked()
         {
-            if (MainMenuPanel != null)
+            if (SecondScreen != null && SecondScreen.activeSelf)
             {
-                UINavigation.Instance.ShowPanel(MainMenuPanel);
+                // SecondScreen'deysek FirstScreen'e geri dön
+                SecondScreen.SetActive(false);
+                FirstScreen.SetActive(true);
             }
             else
             {
-                Hide();
+                if (MainMenuPanel != null)
+                {
+                    UINavigation.Instance.ShowPanel(MainMenuPanel);
+                }
+                else
+                {
+                    Hide();
+                }
             }
         }
     }

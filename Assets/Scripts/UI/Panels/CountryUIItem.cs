@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using EmpireX.Data;
@@ -15,8 +15,13 @@ namespace EmpireX.UI
 
         public void Setup(CountrySO countrySo, bool isUnlocked, int cityCount)
         {
-            CountryNameText.text = countrySo.Name;
-            CountryCityCoundText.text = cityCount.ToString();
+            if (countrySo == null) return;
+
+            if (CountryNameText != null) CountryNameText.text = countrySo.Name;
+            else Debug.LogError("[CountryUIItem] CountryNameText atanmamış!");
+
+            if (CountryCityCoundText != null) CountryCityCoundText.text = cityCount.ToString();
+            else Debug.LogError("[CountryUIItem] CountryCityCoundText atanmamış!");
 
             if (CountryLogo != null && countrySo.CountryLogo != null)
             {

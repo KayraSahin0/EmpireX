@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using EmpireX.Data;
@@ -15,9 +15,16 @@ namespace EmpireX.UI
 
         public void Setup(CitySO citySo, bool isUnlocked, int corpCount)
         {
-            CityNameText.text = citySo.Name;
-            CityTaxText.text = $"%{citySo.Tax * 100}";
-            CityCorpCount.text = corpCount.ToString();
+            if (citySo == null) return;
+
+            if (CityNameText != null) CityNameText.text = citySo.Name;
+            else Debug.LogError("[CityUIItem] CityNameText atanmamış!");
+
+            if (CityTaxText != null) CityTaxText.text = $"%{citySo.Tax * 100}";
+            else Debug.LogError("[CityUIItem] CityTaxText atanmamış!");
+
+            if (CityCorpCount != null) CityCorpCount.text = corpCount.ToString();
+            else Debug.LogError("[CityUIItem] CityCorpCount atanmamış!");
 
             if (LockOverlay != null) LockOverlay.SetActive(!isUnlocked);
             

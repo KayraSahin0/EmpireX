@@ -57,14 +57,14 @@ namespace EmpireX.Company
                 CityId = cityId,
                 Level = 1,
                 Value = type.BaseCost,
+                Revenue = type.BaseRevenue,
+                Expense = type.BaseExpense,
                 Brand = 10,
                 MarketShare = 1,
                 Automation = 0,
                 Innovation = 0,
                 Risk = 0.5,
-                Cash = 0,
-                Revenue = type.BaseRevenue,
-                Expense = type.BaseExpense
+                Cash = 0
             };
 
             _companies.Add(company);

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,13 @@ namespace EmpireX.UI
         public GameObject CityPrefab;
 
         private List<GameObject> _spawnedItems = new List<GameObject>();
+
+        private void Awake()
+        {
+            Debug.Log("[CityPanel] LoadingScreen sırasında prefablar yükleniyor ve dolduruluyor...");
+            PopulateList();
+            Debug.Log("[CityPanel] Prefablar başarıyla oluşturuldu.");
+        }
 
         private void Start()
         {
@@ -47,12 +54,6 @@ namespace EmpireX.UI
             if (runtimeData == null || runtimeData.HoldingData == null) return;
 
             var allCities = Resources.LoadAll<CitySO>("Configs");
-
-            // Eğer hiç açık şehir yoksa ilkini default olarak aç
-            if (runtimeData.HoldingData.CityIds.Count == 0 && allCities.Length > 0)
-            {
-                runtimeData.HoldingData.CityIds.Add(allCities[0].Id);
-            }
 
             foreach (var citySo in allCities)
             {

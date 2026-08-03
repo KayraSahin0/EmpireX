@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using EmpireX.Data;
@@ -17,9 +17,14 @@ namespace EmpireX.UI
         {
             if (companyData == null) return;
             
-            CompanyNameText.text = companyData.Name;
-            CompanyTotalRevenueText.text = $"$ {companyData.Revenue:N0}";
-            CompanyDailyRevenueText.text = $"$ {(companyData.Revenue / 30.0):N0} / gün";
+            if (CompanyNameText != null) CompanyNameText.text = companyData.Name;
+            else Debug.LogError("[CompanyUIItem] CompanyNameText atanmamış!");
+
+            if (CompanyTotalRevenueText != null) CompanyTotalRevenueText.text = $"$ {companyData.Revenue:N0}";
+            else Debug.LogError("[CompanyUIItem] CompanyTotalRevenueText atanmamış!");
+
+            if (CompanyDailyRevenueText != null) CompanyDailyRevenueText.text = $"$ {(companyData.Revenue / 30.0):N0} / gün";
+            else Debug.LogError("[CompanyUIItem] CompanyDailyRevenueText atanmamış!");
 
             // Config'den Type'ı bul
             var configs = Resources.LoadAll<CompanyTypeSO>("Configs");

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7455540814837747855}
   - component: {fileID: 7588719611629381583}
   - component: {fileID: 1487426933649329167}
+  - component: {fileID: 2285082232290814953}
   m_Layer: 5
   m_Name: EmployeesBtn
   m_TagString: Untagged
@@ -125,6 +126,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2285082232290814953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407884431164262174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62b180f5badee9448d0bf5961bd7ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmpireX.UI::EmpireX.UI.EmployeeUIItem
+  EmployeesIcon: {fileID: 6891181899521742235}
+  EmployeesNameText: {fileID: 7033974141192048068}
+  EmployeesPozitionText: {fileID: 4310382579033792737}
+  FillStar: {fileID: 3836414480263348134}
 --- !u!1 &1113669968300000335
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,8 +389,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Yavuz Selo
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6dd972acfa97d5b4d8d6c2ecab8b99b7, type: 2}
-  m_sharedMaterial: {fileID: 4995319563740615033, guid: 6dd972acfa97d5b4d8d6c2ecab8b99b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a53c1c790872f0949a44c5bb16462ee7, type: 2}
+  m_sharedMaterial: {fileID: -9144920194864208220, guid: a53c1c790872f0949a44c5bb16462ee7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -599,8 +616,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CFO
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6dd972acfa97d5b4d8d6c2ecab8b99b7, type: 2}
-  m_sharedMaterial: {fileID: 4995319563740615033, guid: 6dd972acfa97d5b4d8d6c2ecab8b99b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a53c1c790872f0949a44c5bb16462ee7, type: 2}
+  m_sharedMaterial: {fileID: -9144920194864208220, guid: a53c1c790872f0949a44c5bb16462ee7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

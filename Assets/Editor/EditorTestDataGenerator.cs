@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using EmpireX.Data;
 
@@ -24,6 +24,8 @@ public class EditorTestDataGenerator : EditorWindow
             cfg.Name = "Test Tech Company";
             cfg.Category = "Teknoloji";
             cfg.BaseCost = 50000;
+            cfg.BaseRevenue = 15000;
+            cfg.BaseExpense = 8000;
         });
 
         // EmployeeType

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 using EmpireX.Core;
 using EmpireX.Data;
@@ -14,8 +15,15 @@ namespace EmpireX.UI
         [Header("Company List Settings")]
         public Transform CompanyScrollviewContent;
         public GameObject CompanyPrefab;
+        public Button NewCompanyBtn;
+
+        [Header("New Company Container")]
+        public GameObject NewCompanyContainer;
+        public TMP_InputField NewCompanyIF;
+        public TMP_Dropdown NewCompanyCategoryDropdown;
 
         private List<GameObject> _spawnedItems = new List<GameObject>();
+        private List<CompanyTypeSO> _availableTypes = new List<CompanyTypeSO>();
 
         private void Start()
         {
@@ -23,17 +31,37 @@ namespace EmpireX.UI
             {
                 BackBtn.onClick.AddListener(OnBackClicked);
             }
+            
+            if (NewCompanyBtn != null)
+            {
+                NewCompanyBtn.onClick.AddListener(OnNewCompanyBtnClicked);
+            }
+
+            if (NewCompanyContainer != null)
+            {
+                NewCompanyContainer.SetActive(false);
+            }
         }
 
         public override void Show()
         {
             base.Show();
+            
+            if (NewCompanyContainer != null)
+            {
+                NewCompanyContainer.SetActive(false);
+            }
             PopulateList();
         }
 
         public override void ShowImmediate()
         {
             base.ShowImmediate();
+            
+            if (NewCompanyContainer != null)
+            {
+                NewCompanyContainer.SetActive(false);
+            }
             PopulateList();
         }
 
@@ -60,6 +88,148 @@ namespace EmpireX.UI
                     uiItem.Setup(company);
                 }
                 _spawnedItems.Add(go);
+            }
+        }
+
+        private void OnNewCompanyBtnClicked()
+        {
+            if (NewCompanyContainer == null) return;
+
+            if (!NewCompanyContainer.activeSelf)
+            {
+                // Paneli Aç ve Dropdown'ı Doldur
+                OpenNewCompanyContainer();
+            }
+            else
+            {
+                // Panel açıksa Onayla / Submit
+                SubmitNewCompany();
+            }
+        }
+
+        private void OpenNewCompanyContainer()
+        {
+            NewCompanyContainer.SetActive(true);
+            
+            if (NewCompanyIF != null)
+            {
+                NewCompanyIF.text = "";
+            }
+
+            if (NewCompanyCategoryDropdown != null)
+            {
+                NewCompanyCategoryDropdown.ClearOptions();
+                _availableTypes.Clear();
+                
+                var allTypes = Resources.LoadAll<CompanyTypeSO>("Configs");
+                var options = new List<string>();
+
+                // TODO: İleride araştırmalarla açılanlar filtrelenecek.
+                // Şimdilik hepsi ekleniyor.
+                foreach (var t in allTypes)
+                {
+                    _availableTypes.Add(t);
+                    options.Add(t.Category + $" ()");
+                }
+
+                if (options.Count == 0)
+                {
+                    options.Add("Kategori Bulunamadı");
+                    NewCompanyCategoryDropdown.interactable = false;
+                }
+                else
+                {
+                    NewCompanyCategoryDropdown.interactable = true;
+                }
+
+                NewCompanyCategoryDropdown.AddOptions(options);
+                NewCompanyCategoryDropdown.value = 0;
+            }
+        }
+
+        private void SubmitNewCompany()
+        {
+            if (GameManager.Instance == null || GameManager.Instance.SaveManager == null) return;
+            
+            var runtimeData = GameManager.Instance.SaveManager.CurrentData;
+            if (runtimeData == null || runtimeData.HoldingData == null) return;
+
+            if (NewCompanyIF == null || string.IsNullOrWhiteSpace(NewCompanyIF.text))
+            {
+                Debug.LogWarning("[CompanyPanel] Lütfen şirket adı giriniz.");
+                return;
+            }
+
+            if (_availableTypes.Count == 0 || NewCompanyCategoryDropdown == null)
+            {
+                return;
+            }
+
+            string companyName = NewCompanyIF.text;
+            var companyType = _availableTypes[NewCompanyCategoryDropdown.value];
+            double cost = companyType.BaseCost;
+            
+            if (runtimeData.HoldingData.Cash < cost)
+            {
+                // Yetersiz Bakiye
+                GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
+                {
+                    Title = "Yetersiz Bakiye",
+                    Message = $"Bu şirketi kurmak için yeterli paranız yok!\nGereken: ${cost:N0}\nMevcut: ${runtimeData.HoldingData.Cash:N0}",
+                    Button1Text = "Tamam",
+                    Button1Callback = null
+                });
+            }
+            else
+            {
+                // Emin misiniz?
+                GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
+                {
+                    Title = "Şirket Kurulumu",
+                    Message = $"{companyName} adında bir {companyType.Category} şirketini ${cost:N0} karşılığında kurmak istediğinize emin misiniz?",
+                    Button1Text = "Evet",
+                    Button1Callback = () => CreateCompany(companyType, companyName),
+                    Button2Text = "Hayır",
+                    Button2Callback = null
+                });
+            }
+        }
+
+        private void CreateCompany(CompanyTypeSO companyType, string companyName)
+        {
+            var runtimeData = GameManager.Instance.SaveManager.CurrentData;
+            
+            // İlk açık şehri bul (veya Config'den ilk şehri al)
+            string targetCityId = "";
+            if (runtimeData.HoldingData.CityIds != null && runtimeData.HoldingData.CityIds.Count > 0)
+            {
+                targetCityId = runtimeData.HoldingData.CityIds[0];
+            }
+            else
+            {
+                var allCities = Resources.LoadAll<CitySO>("Configs");
+                if (allCities.Length > 0) targetCityId = allCities[0].Id;
+            }
+            
+            // CompanyManager üzerinden oluştur (Bakiye düşme işlemini manager yapar)
+            var newCompany = GameManager.Instance.CompanyManager.CreateCompany(companyType, companyName, targetCityId);
+            
+            if (newCompany != null)
+            {
+                // Container'ı kapat
+                if (NewCompanyContainer != null) NewCompanyContainer.SetActive(false);
+
+                // Listeyi yenile
+                PopulateList();
+                
+                // Başarılı Pop-up
+                GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
+                {
+                    Title = "Tebrikler",
+                    Message = $"{companyName} başarıyla kuruldu!",
+                    Button1Text = "Tamam",
+                    Button1Callback = null
+                });
             }
         }
 

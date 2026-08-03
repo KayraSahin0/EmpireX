@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,13 @@ namespace EmpireX.UI
         public GameObject CountryPrefab;
 
         private List<GameObject> _spawnedItems = new List<GameObject>();
+
+        private void Awake()
+        {
+            Debug.Log("[CountryPanel] LoadingScreen sırasında prefablar yükleniyor ve dolduruluyor...");
+            PopulateList();
+            Debug.Log("[CountryPanel] Prefablar başarıyla oluşturuldu.");
+        }
 
         private void Start()
         {
@@ -48,12 +55,6 @@ namespace EmpireX.UI
 
             var allCountries = Resources.LoadAll<CountrySO>("Configs");
             var allCities = Resources.LoadAll<CitySO>("Configs");
-
-            // Eğer hiç açık ülke yoksa ilkini default olarak aç
-            if (runtimeData.HoldingData.CountryIds.Count == 0 && allCountries.Length > 0)
-            {
-                runtimeData.HoldingData.CountryIds.Add(allCountries[0].Id);
-            }
 
             foreach (var countrySo in allCountries)
             {
