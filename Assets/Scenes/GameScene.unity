@@ -781,24 +781,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6731303764431786042, guid: ce0ab5c9978598c418baf755012eab43, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6438510702499944839, guid: ce0ab5c9978598c418baf755012eab43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3214209990973295463, guid: ce0ab5c9978598c418baf755012eab43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4751683057269842762, guid: ce0ab5c9978598c418baf755012eab43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1743815618270138314, guid: ce0ab5c9978598c418baf755012eab43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4617005450606210293, guid: ce0ab5c9978598c418baf755012eab43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 9081311980424713847, guid: ce0ab5c9978598c418baf755012eab43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: ce0ab5c9978598c418baf755012eab43, type: 3}
 --- !u!224 &295734898 stripped
 RectTransform:
@@ -3556,9 +3538,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1838037663}
     m_Modifications:
+    - target: {fileID: 2148746141224470981, guid: 5674f92b72e8f804f910cd380a6483ba, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 2435415003880793711, guid: 5674f92b72e8f804f910cd380a6483ba, type: 3}
       propertyPath: m_Name
       value: ExchangePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435415003880793711, guid: 5674f92b72e8f804f910cd380a6483ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6853292300447108487, guid: 5674f92b72e8f804f910cd380a6483ba, type: 3}
       propertyPath: m_Pivot.x
@@ -3643,7 +3633,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6146088257052661806, guid: 5674f92b72e8f804f910cd380a6483ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8778944804129744690, guid: 5674f92b72e8f804f910cd380a6483ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5674f92b72e8f804f910cd380a6483ba, type: 3}
 --- !u!224 &2062496905 stripped
 RectTransform:

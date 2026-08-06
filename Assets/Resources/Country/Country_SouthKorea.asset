@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955803104a1c07948ae4e4d5d3f82ca7, type: 3}
+  m_Name: Country_SouthKorea
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.CountrySO
+  Id: country_kr
+  Name: "G\xFCney Kore"
+  CountryLogo: {fileID: 21300000, guid: 469d208385b73884785ea888fe04035a, type: 3}
+  Currency: Won
+  Tax: 25
+  Inflation: 2
+  InterestRate: 2.75
+  Stability: 92
+  Economy: 82

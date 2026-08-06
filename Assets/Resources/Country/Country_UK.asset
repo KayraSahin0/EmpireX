@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955803104a1c07948ae4e4d5d3f82ca7, type: 3}
+  m_Name: Country_UK
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.CountrySO
+  Id: country_uk
+  Name: "\u0130ngiltere"
+  CountryLogo: {fileID: 21300000, guid: 9c029c5b8ac96e84ea339a7b63e0506e, type: 3}
+  Currency: Sterlin
+  Tax: 25
+  Inflation: 3
+  InterestRate: 3.75
+  Stability: 88
+  Economy: 85

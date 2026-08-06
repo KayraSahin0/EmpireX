@@ -72,16 +72,6 @@ MonoBehaviour:
     isCompleted: 1
     createdAtTicks: 639211236709098355
     completedAtTicks: 639212140115227851
-  - id: 6df821f5-7312-4373-97b9-73f443a01e1b
-    title: "\u015Eehirler"
-    description: "Kullan\u0131c\u0131n\u0131n se\xE7ti\u011Fi \u015Fehire g\xF6re
-      arkaplan de\u011Fi\u015Fecek dolay\u0131s\u0131yla ekrandaki \u015Firketlerde
-      de\u011Fi\u015Fecek. \u015Eehirlerin i\xE7indeki i\u015Fletmeler birbirinden
-      farkl\u0131 oldu\u011Fu i\xE7in se\xE7ilen \u015Fehrin haritas\u0131 a\xE7\u0131lmal\u0131."
-    categoryId: bbfa3375-c82a-4740-a1ce-03bbd1c8f43d
-    isCompleted: 0
-    createdAtTicks: 639211286968212417
-    completedAtTicks: 0
   - id: 60fa8123-82f2-4f57-bb2f-bd80284b9fe7
     title: "Panel tasar\u0131mlar\u0131 yap"
     description: "Eksik panelleri yap, var olanlar\u0131n baz\u0131lar\u0131n\u0131n
@@ -110,6 +100,16 @@ MonoBehaviour:
     categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
     isCompleted: 0
     createdAtTicks: 639213840828538562
+    completedAtTicks: 0
+  - id: 4fa6fbf7-efd8-4eb0-87fb-e61ceebd9f29
+    title: "Test Kodlar\u0131 ve haz\u0131r ba\u015Flang\u0131\xE7lar"
+    description: "yeni oyun a\xE7\u0131ld\u0131\u011F\u0131nda \xFClkelerin ve di\u011Fer
+      her \u015Feyin ba\u015Flang\u0131\xE7 de\u011Ferlerini do\u011Frudan sizin
+      Config'te belirledi\u011Finiz Economy, Tax ve Inflation de\u011Ferlerinden
+      okuyup sisteme dahil etmesini sa\u011Flayacak"
+    categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
+    isCompleted: 0
+    createdAtTicks: 639215432878258208
     completedAtTicks: 0
   categories:
   - id: 43f67495-a5b7-46c2-bcf2-832743e37dd1

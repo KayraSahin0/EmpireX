@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955803104a1c07948ae4e4d5d3f82ca7, type: 3}
+  m_Name: Country_Australia
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.CountrySO
+  Id: country_au
+  Name: Avusturalya
+  CountryLogo: {fileID: 21300000, guid: b6f840e589cae1d4ab0108c6dfa87959, type: 3}
+  Currency: "Avusturalya Dolar\u0131"
+  Tax: 30
+  Inflation: 3
+  InterestRate: 3.85
+  Stability: 96
+  Economy: 82

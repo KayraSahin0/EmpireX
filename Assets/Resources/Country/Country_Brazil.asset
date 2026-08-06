@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955803104a1c07948ae4e4d5d3f82ca7, type: 3}
+  m_Name: Country_Brazil
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.CountrySO
+  Id: country_br
+  Name: Brezilya
+  CountryLogo: {fileID: 21300000, guid: 9c8df5ab1b859dc4eb011bedd89c0cff, type: 3}
+  Currency: Brezilya reali
+  Tax: 34
+  Inflation: 5
+  InterestRate: 12
+  Stability: 68
+  Economy: 72
