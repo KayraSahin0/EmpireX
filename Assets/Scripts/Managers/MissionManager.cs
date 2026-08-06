@@ -44,7 +44,7 @@ namespace EmpireX.Missions
 
         private void LoadMissionsFromResources()
         {
-            var loaded = Resources.LoadAll<MissionSO>("Missions");
+            var loaded = Resources.LoadAll<MissionSO>("Mission");
             if (loaded != null && loaded.Length > 0)
             {
                 _missionDatabase = loaded.ToList();

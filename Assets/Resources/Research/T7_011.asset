@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef25bea7fa13d664e8a58f33994ae004, type: 3}
+  m_Name: T7_011
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.ResearchSO
+  Id: T7_011
+  Name: 'Space Technologies '
+  Category: Company
+  Cost: 40000
+  Duration: 4000
+  MaxLevel: 1
+  Prerequisites:
+  - T7_004
+  - T7_006
+  Requirements:
+  - ResearchCenterLevel>=5
+  - Cash>=750000000
+  Bonus:
+  - UnlockCompany:SpaceTechnology
+  - ResearchProduction:+25
+  - Brand:+50

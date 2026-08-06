@@ -27,7 +27,7 @@ namespace EmpireX.UI
             else Debug.LogError("[CompanyUIItem] CompanyDailyRevenueText atanmamış!");
 
             // Config'den Type'ı bul
-            var configs = Resources.LoadAll<CompanyTypeSO>("Configs");
+            var configs = Resources.LoadAll<CompanyTypeSO>("CompanyType");
             foreach (var cfg in configs)
             {
                 if (cfg.Id == companyData.CompanyTypeId)

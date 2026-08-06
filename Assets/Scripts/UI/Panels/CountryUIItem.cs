@@ -20,7 +20,7 @@ namespace EmpireX.UI
             if (CountryNameText != null) CountryNameText.text = countrySo.Name;
             else Debug.LogError("[CountryUIItem] CountryNameText atanmamış!");
 
-            if (CountryCityCoundText != null) CountryCityCoundText.text = cityCount.ToString();
+            if (CountryCityCoundText != null) CountryCityCoundText.text = $"{cityCount} Şehirde şirketiniz var";
             else Debug.LogError("[CountryUIItem] CountryCityCoundText atanmamış!");
 
             if (CountryLogo != null && countrySo.CountryLogo != null)

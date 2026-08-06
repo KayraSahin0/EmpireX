@@ -111,6 +111,44 @@ MonoBehaviour:
     isCompleted: 0
     createdAtTicks: 639215432878258208
     completedAtTicks: 0
+  - id: c8176688-b615-4f99-8500-3f03a0cf2e38
+    title: "Research Point \u015F\xF6yle kullan\u0131lacak"
+    description: "1. Headquarters - R&D Department (Ana Kaynak) \u2B50\u2B50\u2B50\u2B50\u2B50\n\nBu
+      bence ana kaynak olmal\u0131.\n\nOyuncu Holding HQ'da Ar-Ge Merkezi kurar.\n\nHer
+      seviye belirli miktarda RSP \xFCretir.\n\n\xD6rne\u011Fin:\n\nR&D Center Lv1
+      = 5 RSP/g\xFCn\nR&D Center Lv2 = 12 RSP/g\xFCn\nR&D Center Lv3 = 22 RSP/g\xFCn\nR&D
+      Center Lv4 = 35 RSP/g\xFCn\nR&D Center Lv5 = 50 RSP/g\xFCn\n\nBu pasif gelir
+      olur.\n\n2. Research Employees \u2B50\u2B50\u2B50\u2B50\u2B50\n\nAr-Ge merkezine
+      \xE7al\u0131\u015Fan atayabilirsin.\n\n\xD6rne\u011Fin:\n\nResearcher\nSenior
+      Researcher\nScientist\nChief Scientist\n\nHer biri RSP \xFCretir.\n\n\xD6rne\u011Fin\n\nResearcher
+      = +0.5 RSP/g\xFCn\n\nSenior = +1\n\nScientist = +2\n\nChief Scientist = +4\n\nSonra
+      mutluluk, stres, y\xF6netici bonuslar\u0131 bunlar\u0131 etkiler.\n\nBu sistem
+      senin mevcut \xE7al\u0131\u015Fan sisteminle m\xFCkemmel uyu\u015Fuyor.\n\n3.
+      Universities \u2B50\u2B50\u2B50\u2B50\u2606\n\nBaz\u0131 \u015Fehirlerde \xFCniversite
+      bonusu olabilir.\n\n\xD6rne\u011Fin\n\nBerlin\n\nTokyo\n\nBoston\n\nSeul\n\nLondra\n\ngibi
+      \u015Fehirlerde\n\nResearch Production +15%\n\nveya\n\nResearch Speed +10%\n\nBu
+      \u015Fehir se\xE7imini stratejik hale getirir.\n\n4. Company Categories \u2B50\u2B50\u2B50\u2B50\u2606\n\nBaz\u0131
+      sekt\xF6rler do\u011Fal olarak Ar-Ge \xFCretir.\n\n\xD6rne\u011Fin\n\nSoftware\n\nAI\n\nBiotechnology\n\nSemiconductor\n\nSpace\n\n\u015Firketleri\n\nHolding'e
+      ekstra RSP kazand\u0131r\u0131r.\n\n\xD6rne\u011Fin\n\nSoftware Company\n\n+0.2
+      RSP/g\xFCn\n\nB\xF6ylece teknoloji \u015Firketleri sadece para i\xE7in de\u011Fil,
+      ara\u015Ft\u0131rma i\xE7in de de\u011Ferli olur.\n\n5. Achievements / Milestones
+      \u2B50\u2B50\u2B50\u2B50\u2B50\n\nEn sevdi\u011Fim sistem bu.\n\n\xD6rne\u011Fin\n\n\u0130lk
+      \u015Eube\n\n+100 RSP\n\u0130lk 100 \xC7al\u0131\u015Fan\n\n+250 RSP\n\u0130lk
+      Halka Arz\n\n+1000 RSP\n10 \u015Eehir\n\n+500 RSP\n\nBu oyuncuya s\xFCrekli
+      \xF6d\xFCl verir.\n\nRSP \xFCretim form\xFCl\xFC\n\nBen olsam g\xFCnl\xFCk
+      RSP \u015F\xF6yle hesaplan\u0131rd\u0131:\n\nToplam RSP/G\xFCn =\n\nHQ R&D\n+\nResearch
+      Employees\n+\nCompany Bonus\n+\nCity Bonus\n+\nExecutive Bonus\n+\nEvent Bonus\n\nSonra\n\nResearch
+      Speed\n\nayr\u0131 bir \xE7arpan olur.\n\nAra\u015Ft\u0131rma H\u0131z\u0131\n\nMesela\n\nResearch
+      Speed = 135%\n\nolursa\n\n180 g\xFCn s\xFCren ara\u015Ft\u0131rma\n\n\u2193\n\nyakla\u015F\u0131k
+      133 g\xFCnde biter.\n\nBu da ayr\u0131 bir geli\u015Ftirme alan\u0131 olu\u015Fturur.\n\nY\xF6neticiler\n\nSen
+      zaten y\xF6netici sistemi yap\u0131yorsun.\n\nBence burada kullan\u0131lmal\u0131.\n\n\xD6rne\u011Fin\n\nCTO\n\nbonus\n\nResearch
+      Speed +15%\nChief Scientist\nRSP Production +20%\nInnovation Director\nResearch
+      Cost -10%\nD\xFCnya Etkinlikleri\n\nMesela\n\nGovernment Innovation Grant\n+50%
+      RSP\nEconomic Crisis\nResearch Speed -20%"
+    categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
+    isCompleted: 0
+    createdAtTicks: 639216455414036754
+    completedAtTicks: 0
   categories:
   - id: 43f67495-a5b7-46c2-bcf2-832743e37dd1
     name: UI

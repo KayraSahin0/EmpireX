@@ -41,7 +41,7 @@ namespace EmpireX.Managers
 
         private void LoadEventsFromResources()
         {
-            var loaded = Resources.LoadAll<WeeklyEventSO>("WeeklyEvents");
+            var loaded = Resources.LoadAll<WeeklyEventSO>("WeeklyEvent");
             if (loaded != null && loaded.Length > 0)
             {
                 _eventDatabase = loaded.ToList();

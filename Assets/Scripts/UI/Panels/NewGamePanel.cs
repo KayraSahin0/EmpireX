@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
@@ -53,10 +53,10 @@ namespace EmpireX.UI
         private void LoadDropdownData()
         {
             _allCountries.Clear();
-            _allCountries.AddRange(Resources.LoadAll<CountrySO>("Configs"));
+            _allCountries.AddRange(Resources.LoadAll<CountrySO>("Country"));
             
             _allCities.Clear();
-            _allCities.AddRange(Resources.LoadAll<CitySO>("Configs"));
+            _allCities.AddRange(Resources.LoadAll<CitySO>("City"));
 
             if (CountryDropdown != null)
             {
@@ -188,14 +188,58 @@ namespace EmpireX.UI
                 newData.HoldingData.Name = holdingName;
 
                 // Seçilen Ülke ve Şehri Holding verisine ekle
+                CountrySO selectedCountry = null;
                 if (CountryDropdown != null && CountryDropdown.value > 0)
                 {
-                    newData.HoldingData.CountryIds.Add(_allCountries[CountryDropdown.value - 1].Id);
+                    selectedCountry = _allCountries[CountryDropdown.value - 1];
+                    newData.HoldingData.CountryIds.Add(selectedCountry.Id);
                 }
                 
                 if (CityDropdown != null && CityDropdown.value > 0)
                 {
                     newData.HoldingData.CityIds.Add(_currentCountryCities[CityDropdown.value - 1].Id);
+                }
+
+                // 1. Config'deki tüm ülkeleri SaveData'ya kopyala
+                foreach (var c in _allCountries)
+                {
+                    var cData = new CountryData
+                    {
+                        Id = c.Id,
+                        Name = c.Name,
+                        Currency = c.Currency,
+                        TaxRate = c.Tax,
+                        Inflation = c.Inflation,
+                        InterestRate = c.InterestRate,
+                        Stability = c.Stability,
+                        EconomyLevel = c.Economy
+                    };
+                    newData.Countries.Add(cData);
+                }
+
+                // 2. Config'deki tüm şehirleri SaveData'ya kopyala
+                foreach (var ct in _allCities)
+                {
+                    var ctData = new CityData
+                    {
+                        Id = ct.Id,
+                        Name = ct.Name,
+                        Rent = ct.Rent,
+                        Workforce = ct.Workforce,
+                        Demand = ct.Demand,
+                        Competition = ct.Competition,
+                        CityBonus = 0f
+                    };
+                    newData.Cities.Add(ctData);
+                }
+
+                // 3. Ekonomi başlangıç değerlerini seçili ülkeye göre ayarla
+                if (selectedCountry != null)
+                {
+                    newData.EconomyData.Inflation = selectedCountry.Inflation;
+                    newData.EconomyData.TaxRate = selectedCountry.Tax;
+                    newData.EconomyData.InterestRate = selectedCountry.InterestRate;
+                    newData.EconomyData.ExchangeRate = 1.0f; // Default
                 }
 
                 GameManager.Instance.SaveManager.SetCurrentData(newData, holdingName);

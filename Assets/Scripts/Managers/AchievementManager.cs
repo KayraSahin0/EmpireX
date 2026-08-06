@@ -38,7 +38,7 @@ namespace EmpireX.Achievements
 
         private void LoadAchievementsFromResources()
         {
-            var loaded = Resources.LoadAll<AchievementSO>("Achievements");
+            var loaded = Resources.LoadAll<AchievementSO>("Achievement");
             if (loaded != null && loaded.Length > 0)
             {
                 _achievementsDatabase = loaded.ToList();

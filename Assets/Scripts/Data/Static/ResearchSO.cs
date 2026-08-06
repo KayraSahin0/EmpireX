@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 namespace EmpireX.Data
 {
@@ -12,6 +12,7 @@ namespace EmpireX.Data
         public float Duration;
         public int MaxLevel;
         public List<string> Prerequisites = new List<string>();
-        public string Bonus;
+        public List<string> Requirements = new List<string>();
+        public List<string> Bonus = new List<string>();
     }
 }

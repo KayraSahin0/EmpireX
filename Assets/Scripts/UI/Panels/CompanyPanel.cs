@@ -1,4 +1,4 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -97,12 +97,12 @@ namespace EmpireX.UI
 
             if (!NewCompanyContainer.activeSelf)
             {
-                // Paneli AÃ§ ve Dropdown'Ä± Doldur
+                // Paneli Aç ve Dropdown'ý Doldur
                 OpenNewCompanyContainer();
             }
             else
             {
-                // Panel aÃ§Ä±ksa Onayla / Submit
+                // Panel açýksa Onayla / Submit
                 SubmitNewCompany();
             }
         }
@@ -121,11 +121,11 @@ namespace EmpireX.UI
                 NewCompanyCategoryDropdown.ClearOptions();
                 _availableTypes.Clear();
                 
-                var allTypes = Resources.LoadAll<CompanyTypeSO>("Configs");
+                var allTypes = Resources.LoadAll<CompanyTypeSO>("CompanyType");
                 var options = new List<string>();
 
-                // TODO: Ä°leride araÅŸtÄ±rmalarla aÃ§Ä±lanlar filtrelenecek.
-                // Åžimdilik hepsi ekleniyor.
+                // TODO: Ýleride araþtýrmalarla açýlanlar filtrelenecek.
+                // Þimdilik hepsi ekleniyor.
                 foreach (var t in allTypes)
                 {
                     _availableTypes.Add(t);
@@ -134,7 +134,7 @@ namespace EmpireX.UI
 
                 if (options.Count == 0)
                 {
-                    options.Add("Kategori BulunamadÄ±");
+                    options.Add("Kategori Bulunamadý");
                     NewCompanyCategoryDropdown.interactable = false;
                 }
                 else
@@ -156,7 +156,7 @@ namespace EmpireX.UI
 
             if (NewCompanyIF == null || string.IsNullOrWhiteSpace(NewCompanyIF.text))
             {
-                Debug.LogWarning("[CompanyPanel] LÃ¼tfen ÅŸirket adÄ± giriniz.");
+                Debug.LogWarning("[CompanyPanel] Lütfen þirket adý giriniz.");
                 return;
             }
 
@@ -175,7 +175,7 @@ namespace EmpireX.UI
                 GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
                 {
                     Title = "Yetersiz Bakiye",
-                    Message = $"Bu ÅŸirketi kurmak iÃ§in yeterli paranÄ±z yok!\nGereken: ${cost:N0}\nMevcut: ${runtimeData.HoldingData.Cash:N0}",
+                    Message = $"Bu þirketi kurmak için yeterli paranýz yok!\nGereken: ${cost:N0}\nMevcut: ${runtimeData.HoldingData.Cash:N0}",
                     Button1Text = "Tamam",
                     Button1Callback = null
                 });
@@ -185,11 +185,11 @@ namespace EmpireX.UI
                 // Emin misiniz?
                 GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
                 {
-                    Title = "Åžirket Kurulumu",
-                    Message = $"{companyName} adÄ±nda bir {companyType.Category} ÅŸirketini ${cost:N0} karÅŸÄ±lÄ±ÄŸÄ±nda kurmak istediÄŸinize emin misiniz?",
+                    Title = "Þirket Kurulumu",
+                    Message = $"{companyName} adýnda bir {companyType.Category} þirketini ${cost:N0} karþýlýðýnda kurmak istediðinize emin misiniz?",
                     Button1Text = "Evet",
                     Button1Callback = () => CreateCompany(companyType, companyName),
-                    Button2Text = "HayÄ±r",
+                    Button2Text = "Hayýr",
                     Button2Callback = null
                 });
             }
@@ -199,7 +199,7 @@ namespace EmpireX.UI
         {
             var runtimeData = GameManager.Instance.SaveManager.CurrentData;
             
-            // Ä°lk aÃ§Ä±k ÅŸehri bul (veya Config'den ilk ÅŸehri al)
+            // Ýlk açýk þehri bul (veya Config'den ilk þehri al)
             string targetCityId = "";
             if (runtimeData.HoldingData.CityIds != null && runtimeData.HoldingData.CityIds.Count > 0)
             {
@@ -207,26 +207,26 @@ namespace EmpireX.UI
             }
             else
             {
-                var allCities = Resources.LoadAll<CitySO>("Configs");
+                var allCities = Resources.LoadAll<CitySO>("City");
                 if (allCities.Length > 0) targetCityId = allCities[0].Id;
             }
             
-            // CompanyManager Ã¼zerinden oluÅŸtur (Bakiye dÃ¼ÅŸme iÅŸlemini manager yapar)
+            // CompanyManager üzerinden oluþtur (Bakiye düþme iþlemini manager yapar)
             var newCompany = GameManager.Instance.CompanyManager.CreateCompany(companyType, companyName, targetCityId);
             
             if (newCompany != null)
             {
-                // Container'Ä± kapat
+                // Container'ý kapat
                 if (NewCompanyContainer != null) NewCompanyContainer.SetActive(false);
 
                 // Listeyi yenile
                 PopulateList();
                 
-                // BaÅŸarÄ±lÄ± Pop-up
+                // Baþarýlý Pop-up
                 GameManager.Instance.EventManager.EventBus.Publish(new EmpireX.Events.ShowSystemPopupEvent
                 {
                     Title = "Tebrikler",
-                    Message = $"{companyName} baÅŸarÄ±yla kuruldu!",
+                    Message = $"{companyName} baþarýyla kuruldu!",
                     Button1Text = "Tamam",
                     Button1Callback = null
                 });

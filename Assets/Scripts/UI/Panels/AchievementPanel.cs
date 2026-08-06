@@ -23,7 +23,7 @@ namespace EmpireX.UI
                 Destroy(child.gameObject);
             }
 
-            var allAchievements = Resources.LoadAll<EmpireX.Data.AchievementSO>("Achievements");
+            var allAchievements = Resources.LoadAll<EmpireX.Data.AchievementSO>("Achievement");
             var saveData = GameManager.Instance?.SaveManager?.CurrentData;
 
             if (allAchievements == null) return;

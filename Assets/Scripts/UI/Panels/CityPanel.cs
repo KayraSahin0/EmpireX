@@ -53,7 +53,7 @@ namespace EmpireX.UI
             var runtimeData = GameManager.Instance.SaveManager.CurrentData;
             if (runtimeData == null || runtimeData.HoldingData == null) return;
 
-            var allCities = Resources.LoadAll<CitySO>("Configs");
+            var allCities = Resources.LoadAll<CitySO>("City");
 
             foreach (var citySo in allCities)
             {

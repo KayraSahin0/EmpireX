@@ -43,7 +43,7 @@ The project is designed around scalability, maintainability and long-term develo
 | Engine | Unity 6 LTS |
 | Render Pipeline | URP |
 | Language | C# |
-| Platform | Android / iOS |
+| Platform | Android / iOS / PC|
 | Architecture | Clean Architecture |
 | UI | MVVM |
 | Save | JSON |

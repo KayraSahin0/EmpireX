@@ -23,7 +23,7 @@ namespace EmpireX.UI
             if (CityTaxText != null) CityTaxText.text = $"%{citySo.Tax * 100}";
             else Debug.LogError("[CityUIItem] CityTaxText atanmamış!");
 
-            if (CityCorpCount != null) CityCorpCount.text = corpCount.ToString();
+            if (CityCorpCount != null) CityCorpCount.text = $"Şehirdeki mevcut şirket sayısı: {corpCount}";
             else Debug.LogError("[CityUIItem] CityCorpCount atanmamış!");
 
             if (LockOverlay != null) LockOverlay.SetActive(!isUnlocked);

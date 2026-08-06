@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef25bea7fa13d664e8a58f33994ae004, type: 3}
+  m_Name: T8_015
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.ResearchSO
+  Id: T8_015
+  Name: EmpireX Initiative
+  Category: Legacy
+  Cost: 100000
+  Duration: 10000
+  MaxLevel: 1
+  Prerequisites:
+  - T8_011
+  - T8_012
+  - T8_013
+  - T8_014
+  Requirements:
+  - HoldingLevel>=15
+  - CountryCount>=30
+  - CompanyCount>=75
+  - MarketValue>=25000000000
+  - ResearchPointsGenerated>=5000000
+  Bonus:
+  - CompanyLimit:+100
+  - BranchLimit:+500
+  - ExecutiveLimit:+50
+  - ResearchProduction:+100
+  - ResearchSpeed:+50
+  - ResearchCost:-50
+  - OperatingCost:-25
+  - Revenue:+25
+  - Brand:+500
+  - EmployeeProductivity:+30
+  - EmployeeHappiness:+30
+  - 'EmployeeStress:-30 '
+  - InvestmentReturn:+25
+  - 'LogisticsCost:-50 '
+  - AcquisitionCost:-50
+  - ProductionEfficiency:+50
