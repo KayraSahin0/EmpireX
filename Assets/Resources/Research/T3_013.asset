@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_015
   Requirements:
   - Cash>=200000
-  Bonus: UnlockCompany:ElectronicsManufacturer
+  Bonus:
+  - UnlockCompany:ElectronicsManufacturer

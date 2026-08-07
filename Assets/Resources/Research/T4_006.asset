@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_006
   Requirements:
   - ExecutiveCount>=4
-  Bonus: ExecutiveLimit:+2
+  Bonus:
+  - ExecutiveLimit:+2

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 using EmpireX.Events;
 using EmpireX.Data;
 using EmpireX.Economy;
@@ -16,8 +17,9 @@ namespace EmpireX.Employee
         private readonly CompanyManager _companyManager;
         private readonly OfficeManager _officeManager;
         private readonly ExecutiveManager _executiveManager;
+        private HRManager _hrManager; // GameManager'dan alınacak
         private List<EmployeeData> _employees;
-        private Random _rnd = new Random();
+        private System.Random _rnd = new System.Random();
 
         public EmployeeManager(IEventBus eventBus, EconomyManager economyManager, CompanyManager companyManager, OfficeManager officeManager, ExecutiveManager executiveManager) : base(eventBus)
         {
@@ -32,6 +34,12 @@ namespace EmpireX.Employee
             _eventBus.Subscribe<LoadCompleted>(OnLoadCompleted);
             _eventBus.Subscribe<DayStarted>(OnDayStarted);
             _eventBus.Subscribe<MonthStarted>(OnMonthStarted);
+            
+            // Lazy load HRManager
+            if (EmpireX.Core.GameManager.Instance != null)
+            {
+                _hrManager = EmpireX.Core.GameManager.Instance.HRManager;
+            }
         }
 
         public override void Dispose()
@@ -44,10 +52,23 @@ namespace EmpireX.Employee
         private void OnLoadCompleted(LoadCompleted e)
         {
             _employees = e.Data.Employees;
+            if (EmpireX.Core.GameManager.Instance != null)
+            {
+                _hrManager = EmpireX.Core.GameManager.Instance.HRManager;
+            }
         }
 
-        public EmployeeData HireEmployee(string companyId, string employeeTypeId, string name = "")
+        public EmployeeData HireEmployee(string companyId, string candidateId)
         {
+            if (_hrManager == null) _hrManager = EmpireX.Core.GameManager.Instance.HRManager;
+            
+            var candidate = _hrManager.GetCandidate(candidateId);
+            if (candidate == null || candidate.IsExecutive) 
+            {
+                _eventBus.Publish(new EmployeeActionFailed { Reason = "Aday bulunamadı veya bu aday bir yönetici." });
+                return null;
+            }
+
             var company = _companyManager.GetCompany(companyId);
             if (company == null) return null;
 
@@ -61,37 +82,46 @@ namespace EmpireX.Employee
                 return null;
             }
 
-            double hiringCost = 1000;
+            double hiringCost = candidate.ExpectedSalary * 1.5; // İşe alım komisyonu
             if (!_economyManager.TrySpend(hiringCost, "Hiring Fee"))
             {
                 _eventBus.Publish(new EmployeeActionFailed { Reason = "İşe alım komisyonu için bakiye yetersiz." });
                 return null;
             }
 
-            if (string.IsNullOrEmpty(name)) name = $"Çalışan {_rnd.Next(1000, 9999)}";
-
             var emp = new EmployeeData
             {
                 Id = Guid.NewGuid().ToString(),
                 CompanyId = companyId,
-                EmployeeTypeId = employeeTypeId,
-                Name = name,
+                EmployeeTypeId = candidate.TypeId,
+                Name = candidate.Name,
+                Age = candidate.Age,
+                PortraitPath = candidate.PortraitPath,
                 Level = 1,
-                Salary = 2000,
-                Skill = (float)(_rnd.NextDouble() * 10 + 5),
-                Experience = 0,
+                Salary = candidate.ExpectedSalary,
+                Skill = CalculateBaseSkillAverage(candidate.Skills),
+                Experience = candidate.Experience,
                 Happiness = 80,
                 Stress = 20,
                 Loyalty = 50,
-                Productivity = 100
+                Productivity = candidate.BaseProductivity
             };
 
             _employees.Add(emp);
             company.EmployeeIds.Add(emp.Id);
             company.Expense += emp.Salary;
 
+            // Adayı havuzdan sil
+            _hrManager.RemoveCandidate(candidateId);
+
             _eventBus.Publish(new EmployeeHired { EmployeeId = emp.Id, CompanyId = companyId });
             return emp;
+        }
+
+        private float CalculateBaseSkillAverage(List<EmployeeSkillValue> skills)
+        {
+            if (skills == null || skills.Count == 0) return 10f;
+            return (float)skills.Average(s => s.Value);
         }
 
         public bool PromoteEmployee(string employeeId)
@@ -144,15 +174,20 @@ namespace EmpireX.Employee
 
         private void OnDayStarted(DayStarted e)
         {
+            var companyTypes = Resources.LoadAll<CompanyTypeSO>("CompanyType");
+            var employeeTypes = Resources.LoadAll<EmployeeTypeSO>("EmployeeType");
+
             foreach (var emp in _employees)
             {
+                var company = _companyManager.GetCompany(emp.CompanyId);
+                if (company == null) continue;
+
                 var office = _officeManager.GetOfficeByOwner(emp.CompanyId);
                 float happinessBonus = office != null ? office.HappinessBonus : 0f;
                 float prodBonus = office != null ? office.ProductivityBonus : 0f;
 
                 emp.Stress += (float)(_rnd.NextDouble() * 2 - 0.5);
                 
-                // HR Direktörü bonusu: Stresi her gün azaltır
                 if (_executiveManager != null && _executiveManager.HasExecutive(emp.CompanyId, "HR"))
                 {
                     emp.Stress -= 1.5f;
@@ -167,9 +202,42 @@ namespace EmpireX.Employee
                 
                 emp.Happiness = Math.Clamp(emp.Happiness + (happinessBonus * 0.01f), 0, 100);
                 emp.Experience += 0.5f; 
-                emp.Productivity = (emp.Skill + emp.Experience/10f) * (emp.Happiness / 100f) * (1 - (emp.Stress/200f));
+
+                // Yeni Verimlilik (Productivity) Matematiği
+                float skillScore = CalculateSkillScore(emp, company, companyTypes, employeeTypes);
+                
+                // Base productivity (EmployeeTypeSO üzerinden)
+                var empType = employeeTypes.FirstOrDefault(t => t.Id == emp.EmployeeTypeId);
+                float baseProd = empType != null ? empType.BaseProductivity : 50f;
+
+                emp.Productivity = baseProd * (skillScore / 100f) * (emp.Happiness / 100f) * (1 - (emp.Stress/200f));
                 emp.Productivity += prodBonus; 
             }
+        }
+
+        private float CalculateSkillScore(EmployeeData emp, CompanyData company, CompanyTypeSO[] companyTypes, EmployeeTypeSO[] employeeTypes)
+        {
+            var compType = companyTypes.FirstOrDefault(c => c.Id == company.CompanyTypeId);
+            var empType = employeeTypes.FirstOrDefault(t => t.Id == emp.EmployeeTypeId);
+
+            if (compType == null || empType == null) return emp.Skill; // Fallback
+
+            float score = 0f;
+            foreach (var req in compType.RequiredSkillses)
+            {
+                // Çalışanın o yetenekteki değerini bul
+                var empSkill = empType.Skills.FirstOrDefault(s => s.SkillType == req.SkillType);
+                float val = empSkill != null ? empSkill.Value : 0f;
+
+                // Ağırlıkla (Weight) çarp (Weight yüzdeliktir, örneğin %70 ise 0.70 ile çarp)
+                score += val * (req.Weight / 100f);
+            }
+
+            // Eğer şirket tipi bir ağırlık tanımlamadıysa fallback dön
+            if (compType.RequiredSkillses == null || compType.RequiredSkillses.Count == 0)
+                return emp.Skill;
+
+            return score;
         }
 
         private void OnMonthStarted(MonthStarted e)
@@ -184,3 +252,4 @@ namespace EmpireX.Employee
         }
     }
 }
+

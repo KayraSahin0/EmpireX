@@ -22,4 +22,5 @@ MonoBehaviour:
   - T5_008
   Requirements:
   - CountryCount>=2
-  Bonus: UnlockCompany:Airline
+  Bonus:
+  - UnlockCompany:Airline

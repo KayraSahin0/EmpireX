@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_006
   Requirements:
   - Brand>=150
-  Bonus: UnlockCompany:Pharmacy
+  Bonus:
+  - UnlockCompany:Pharmacy

@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_005
   Requirements:
   - ExecutiveCount>=2
-  Bonus: ExecutiveEfficiency:+10
+  Bonus:
+  - ExecutiveEfficiency:+10

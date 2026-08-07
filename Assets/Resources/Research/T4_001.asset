@@ -23,4 +23,5 @@ MonoBehaviour:
   Requirements:
   - HoldingLevel>=3
   - CompanyCount>=5
-  Bonus: UnlockMechanic:Headquarters
+  Bonus:
+  - UnlockMechanic:Headquarters

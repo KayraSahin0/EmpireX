@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_007
   Requirements:
   - EmployeeCount>=20
-  Bonus: UnlockMechanic:Executive
+  Bonus:
+  - UnlockMechanic:Executive

@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_004
   Requirements:
   - Cash>=5000
-  Bonus: UnlockCompany:Food
+  Bonus:
+  - UnlockCompany:Food

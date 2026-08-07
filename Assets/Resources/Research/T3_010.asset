@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_012
   Requirements:
   - 'BranchCount>=10 '
-  Bonus: LogisticsCost:-10
+  Bonus:
+  - LogisticsCost:-10

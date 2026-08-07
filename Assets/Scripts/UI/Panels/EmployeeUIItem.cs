@@ -1,51 +1,86 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using EmpireX.Data;
+using System;
 
 namespace EmpireX.UI
 {
     public class EmployeeUIItem : MonoBehaviour
     {
         public Image EmployeesIcon;
-        public TMP_Text EmployeesNameText;
-        public TMP_Text EmployeesPozitionText;
-        public Image FillStar; // Fill Amount ile kontrol edilecek (Maks 5.0 varsayýlýyor)
+        public TMP_Text EmployeesNameTxt;
+        public TMP_Text EmployeesPozitionTxt;
+        public TMP_Text EmployeesExperienceText;
+        public TMP_Text EmployeesSalaryText;
+        public Button ItemButton;
 
-        public void Setup(EmployeeData employee)
+        private CandidateData _currentCandidate;
+        private Action<CandidateData> _onClickCallback;
+
+        private void Start()
         {
-            EmployeesNameText.text = employee.Name;
-            
-            // Skill hesabýna göre FillAmount (0.0 - 1.0)
-            if (FillStar != null) FillStar.fillAmount = employee.Skill / 5.0f;
-
-            var configs = Resources.LoadAll<EmployeeTypeSO>("EmployeeType");
-            foreach (var cfg in configs)
+            if (ItemButton != null)
             {
-                if (cfg.Id == employee.EmployeeTypeId)
+                ItemButton.onClick.AddListener(OnItemClicked);
+            }
+            else
+            {
+                var btn = GetComponent<Button>();
+                if (btn != null) btn.onClick.AddListener(OnItemClicked);
+            }
+        }
+
+        public void Setup(CandidateData candidate, Action<CandidateData> onClickCallback)
+        {
+            _currentCandidate = candidate;
+            _onClickCallback = onClickCallback;
+
+            if (EmployeesNameTxt != null) EmployeesNameTxt.text = candidate.Name;
+            if (EmployeesExperienceText != null) EmployeesExperienceText.text = candidate.Experience.ToString("F0") + " Exp";
+            if (EmployeesSalaryText != null) EmployeesSalaryText.text = candidate.ExpectedSalary.ToString("C0");
+
+            // Pozisyon ismini bul
+            if (candidate.IsExecutive)
+            {
+                var configs = Resources.LoadAll<ExecutiveTypeSO>("ExecutiveType");
+                foreach (var cfg in configs)
                 {
-                    EmployeesPozitionText.text = cfg.Name;
-                    if (EmployeesIcon != null) EmployeesIcon.sprite = cfg.Icon;
-                    break;
+                    if (cfg.Id == candidate.TypeId)
+                    {
+                        if (EmployeesPozitionTxt != null) EmployeesPozitionTxt.text = cfg.Name;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                var configs = Resources.LoadAll<EmployeeTypeSO>("EmployeeType");
+                foreach (var cfg in configs)
+                {
+                    if (cfg.Id == candidate.TypeId)
+                    {
+                        if (EmployeesPozitionTxt != null) EmployeesPozitionTxt.text = cfg.Name;
+                        break;
+                    }
+                }
+            }
+
+            // Portre ykle
+            if (EmployeesIcon != null && !string.IsNullOrEmpty(candidate.PortraitPath))
+            {
+                string folder = candidate.IsExecutive ? "ExecutivePortraits" : "EmployeePortraits";
+                Sprite loadedSprite = Resources.Load<Sprite>(folder + "/" + candidate.PortraitPath);
+                if (loadedSprite != null)
+                {
+                    EmployeesIcon.sprite = loadedSprite;
                 }
             }
         }
 
-        public void SetupExecutive(ExecutiveData exec)
+        private void OnItemClicked()
         {
-            var configs = Resources.LoadAll<ExecutiveTypeSO>("ExecutiveType");
-            foreach (var cfg in configs)
-            {
-                if (cfg.Id == exec.ExecutiveTypeId)
-                {
-                    EmployeesNameText.text = "Yönetici"; // Ýsimleri config üzerinden ya da rastgele üretilebilir
-                    EmployeesPozitionText.text = cfg.Name;
-                    if (EmployeesIcon != null) EmployeesIcon.sprite = cfg.Icon;
-                    // Yöneticilerin skilli varsayýlan olarak 5 kabul edilsin veya 0 kalsýn
-                    if (FillStar != null) FillStar.fillAmount = 1.0f; 
-                    break;
-                }
-            }
+            _onClickCallback?.Invoke(_currentCandidate);
         }
     }
 }

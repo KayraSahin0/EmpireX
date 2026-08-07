@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_004
   Requirements:
   - ExecutiveCount>=1
-  Bonus: ManagerEfficiency:+10
+  Bonus:
+  - ManagerEfficiency:+10

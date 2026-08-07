@@ -22,4 +22,5 @@ MonoBehaviour:
   - 'T5_002 '
   Requirements:
   - CompanyCount>=8
-  Bonus: UnlockCompany:InvestmentFund
+  Bonus:
+  - UnlockCompany:InvestmentFund

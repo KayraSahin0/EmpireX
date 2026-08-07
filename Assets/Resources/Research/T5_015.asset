@@ -24,4 +24,5 @@ MonoBehaviour:
   Requirements:
   - HoldingLevel>=6
   - CountryCount>=3
-  Bonus: CompanyLimit:+5
+  Bonus:
+  - CompanyLimit:+5

@@ -21,4 +21,5 @@ MonoBehaviour:
   Prerequisites:
   - T1_001
   Requirements: []
-  Bonus: Demand:+5
+  Bonus:
+  - Demand:+5

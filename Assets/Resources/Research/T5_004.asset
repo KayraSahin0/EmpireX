@@ -22,4 +22,5 @@ MonoBehaviour:
   - T4_009
   Requirements:
   - 'Cash>=5000000 '
-  Bonus: UnlockCompany:Automotive
+  Bonus:
+  - UnlockCompany:Automotive

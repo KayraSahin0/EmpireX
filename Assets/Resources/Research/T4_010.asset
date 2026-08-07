@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_013
   Requirements:
   - Cash>=750000
-  Bonus: UnlockCompany:Software
+  Bonus:
+  - UnlockCompany:Software

@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_009
   Requirements:
   - CompanyLevel>=5
-  Bonus: BranchLimit:+2
+  Bonus:
+  - BranchLimit:+2

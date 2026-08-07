@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_013
   Requirements:
   - CompanyCount>=3
-  Bonus: UnlockMechanic:RegionalExpansion
+  Bonus:
+  - UnlockMechanic:RegionalExpansion

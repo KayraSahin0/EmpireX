@@ -1,15 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EmpireX.Audio
 {
-    [CreateAssetMenu(fileName = "NewAudioConfig", menuName = "EmpireX/Data/AudioConfig")]
+    [CreateAssetMenu(fileName = "NewAudioConfig", menuName = "EmpireX/Data/AudioConfig", order = 2)]
     public class AudioConfigSO : ScriptableObject
     {
-        [Header("Müzikler")]
+        [Header("MÃ¼zikler")]
         public AudioClip MainMenuMusic;
         public AudioClip GameMusic;
 
-        [Header("Arayüz Sesleri")]
+        [Header("ArayÃ¼z Sesleri")]
         public AudioClip ButtonClick;
         public AudioClip SuccessAction;
         public AudioClip ErrorAction;
@@ -18,9 +18,10 @@ namespace EmpireX.Audio
         public AudioClip MoneyGain;
         public AudioClip MoneySpend;
 
-        [Header("Oyun İçi Olaylar")]
+        [Header("Oyun Ä°Ã§i Olaylar")]
         public AudioClip AchievementUnlocked;
         public AudioClip BadEventTriggered;
         public AudioClip GoodEventTriggered;
     }
 }
+

@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_002
   Requirements:
   - CityCount>=3
-  Bonus: UnlockMechanic:NationalExpansion
+  Bonus:
+  - UnlockMechanic:NationalExpansion

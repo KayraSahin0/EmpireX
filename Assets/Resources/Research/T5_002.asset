@@ -23,4 +23,5 @@ MonoBehaviour:
   Requirements:
   - Cash>=2500000
   - Brand>=1500
-  Bonus: UnlockCompany:InvestmentBank
+  Bonus:
+  - UnlockCompany:InvestmentBank

@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_001
   Requirements:
   - HoldingLevel>=2
-  Bonus: CompanyLimit:+2
+  Bonus:
+  - CompanyLimit:+2

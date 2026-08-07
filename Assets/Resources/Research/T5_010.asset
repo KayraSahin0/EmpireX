@@ -22,4 +22,5 @@ MonoBehaviour:
   - T5_006
   Requirements:
   - 'ResearchPointsGenerated>=10000 '
-  Bonus: ResearchProduction:+20
+  Bonus:
+  - ResearchProduction:+20

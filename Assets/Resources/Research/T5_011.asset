@@ -25,4 +25,5 @@ MonoBehaviour:
   - HoldingLevel>=5
   - Brand>=2500
   - CompanyCount>=10
-  Bonus: UnlockMechanic:IPOPreparation
+  Bonus:
+  - UnlockMechanic:IPOPreparation

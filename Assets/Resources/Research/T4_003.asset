@@ -23,4 +23,5 @@ MonoBehaviour:
   Requirements:
   - Cash>=500000
   - Brand>=750
-  Bonus: UnlockCompany:CommercialBank
+  Bonus:
+  - UnlockCompany:CommercialBank

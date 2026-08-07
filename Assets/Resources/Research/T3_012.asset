@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_008
   Requirements:
   - Brand>=500
-  Bonus: Brand:+20
+  Bonus:
+  - Brand:+20

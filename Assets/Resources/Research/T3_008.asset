@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_009
   Requirements:
   - Brand>=300
-  Bonus: Demand:+15
+  Bonus:
+  - Demand:+15

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 namespace EmpireX.Data
 {
-    [CreateAssetMenu(fileName = "NewCountry", menuName = "EmpireX/Data/Country")]
+    [CreateAssetMenu(fileName = "NewCountry", menuName = "EmpireX/Data/Country", order = 6)]
     public class CountrySO : ScriptableObject
     {
         public string Id;
@@ -15,3 +15,4 @@ namespace EmpireX.Data
         public float Economy;
     }
 }
+

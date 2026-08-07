@@ -11,41 +11,48 @@ namespace EmpireX.UI
         [Header("Common References")]
         public Button BackBtn;
 
-        [Header("Tab Buttons")]
-        public Button AllBtn;
-        public Button AdministratorsBtn;
-        public Button DepartmentBtn;
+        [Header("Selection Buttons")]
+        public Button ExecutiveSelectionBtn;
+        public Button EmployeeSelectionBtn;
 
         [Header("List Settings")]
         public Transform EmployeesScrollviewContent;
         public GameObject EmployeesBtnPrefab;
 
+        [Header("Detail Panel")]
+        public EmployeesDetailPanel DetailPanel; // Inspector'dan atanacak
+
         private List<GameObject> _spawnedItems = new List<GameObject>();
+        private int _currentFilterMode = 0; // 0: Employees, 1: Executives
 
         private void Start()
         {
             if (BackBtn != null) BackBtn.onClick.AddListener(OnBackClicked);
             
-            if (AllBtn != null) AllBtn.onClick.AddListener(() => PopulateList(0));
-            if (AdministratorsBtn != null) AdministratorsBtn.onClick.AddListener(() => PopulateList(1));
-            if (DepartmentBtn != null) DepartmentBtn.onClick.AddListener(() => PopulateList(2));
+            if (EmployeeSelectionBtn != null) EmployeeSelectionBtn.onClick.AddListener(() => PopulateList(0));
+            if (ExecutiveSelectionBtn != null) ExecutiveSelectionBtn.onClick.AddListener(() => PopulateList(1));
         }
 
         public override void Show()
         {
             base.Show();
-            PopulateList(0); // Default: All
+            PopulateList(0); // Default: Employees
         }
         
         public override void ShowImmediate()
         {
             base.ShowImmediate();
-            PopulateList(0); // Default: All
+            PopulateList(0);
+        }
+
+        public void RefreshCurrentList()
+        {
+            PopulateList(_currentFilterMode);
         }
 
         private void PopulateList(int filterMode)
         {
-            // filterMode: 0=All, 1=Administrators, 2=Department
+            _currentFilterMode = filterMode;
 
             foreach (var item in _spawnedItems)
             {
@@ -54,39 +61,54 @@ namespace EmpireX.UI
             _spawnedItems.Clear();
 
             if (EmployeesScrollviewContent == null || EmployeesBtnPrefab == null) return;
-            if (GameManager.Instance == null || GameManager.Instance.SaveManager == null) return;
-            
-            var runtimeData = GameManager.Instance.SaveManager.CurrentData;
-            if (runtimeData == null) return;
+            if (GameManager.Instance == null || GameManager.Instance.HRManager == null) return;
 
-            // Administrators (Yöneticiler)
-            if (filterMode == 0 || filterMode == 1)
+            var hrManager = GameManager.Instance.HRManager;
+            var saveManager = GameManager.Instance.SaveManager;
+
+            if (saveManager == null || saveManager.CurrentData == null) return;
+
+            // Employees (0)
+            if (filterMode == 0)
             {
-                if (runtimeData.Executives != null)
+                var candidates = saveManager.CurrentData.EmployeeCandidates;
+                if (candidates != null)
                 {
-                    foreach (var exec in runtimeData.Executives)
+                    foreach (var cand in candidates)
                     {
                         var go = Instantiate(EmployeesBtnPrefab, EmployeesScrollviewContent);
                         var uiItem = go.GetComponent<EmployeeUIItem>();
-                        if (uiItem != null) uiItem.SetupExecutive(exec);
+                        if (uiItem != null) uiItem.Setup(cand, OnCandidateClicked);
                         _spawnedItems.Add(go);
                     }
                 }
             }
-
-            // Normal Çalışanlar
-            if (filterMode == 0 || filterMode == 2)
+            // Executives (1)
+            else if (filterMode == 1)
             {
-                if (runtimeData.Employees != null)
+                var candidates = saveManager.CurrentData.ExecutiveCandidates;
+                if (candidates != null)
                 {
-                    foreach (var emp in runtimeData.Employees)
+                    foreach (var cand in candidates)
                     {
                         var go = Instantiate(EmployeesBtnPrefab, EmployeesScrollviewContent);
                         var uiItem = go.GetComponent<EmployeeUIItem>();
-                        if (uiItem != null) uiItem.Setup(emp);
+                        if (uiItem != null) uiItem.Setup(cand, OnCandidateClicked);
                         _spawnedItems.Add(go);
                     }
                 }
+            }
+        }
+
+        private void OnCandidateClicked(CandidateData candidate)
+        {
+            if (DetailPanel != null)
+            {
+                DetailPanel.ShowCandidate(candidate, this);
+            }
+            else
+            {
+                Debug.LogWarning("DetailPanel is not assigned in EmployeesPanel!");
             }
         }
 

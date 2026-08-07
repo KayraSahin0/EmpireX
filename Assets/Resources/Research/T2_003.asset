@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_008
   Requirements:
   - Brand>=100
-  Bonus: Demand:+10
+  Bonus:
+  - Demand:+10

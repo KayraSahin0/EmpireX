@@ -23,4 +23,5 @@ MonoBehaviour:
   Requirements:
   - HoldingLevel>=4
   - EmployeeCount>=300
-  Bonus: UnlockMechanic:ResearchCenter
+  Bonus:
+  - UnlockMechanic:ResearchCenter

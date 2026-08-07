@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_011
   Requirements:
   - Cash>=150000
-  Bonus: OperatingCost:-5
+  Bonus:
+  - OperatingCost:-5

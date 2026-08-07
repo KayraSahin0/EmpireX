@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_009
   Requirements:
   - ProductionCompanyCount>=2
-  Bonus: ProductionEfficiency:+15
+  Bonus:
+  - ProductionEfficiency:+15

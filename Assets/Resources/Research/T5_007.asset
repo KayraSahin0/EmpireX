@@ -22,4 +22,5 @@ MonoBehaviour:
   - T5_006
   Requirements:
   - BranchCount>=50
-  Bonus: OperatingCost:-8
+  Bonus:
+  - OperatingCost:-8

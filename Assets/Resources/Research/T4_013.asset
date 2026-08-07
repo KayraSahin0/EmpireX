@@ -22,4 +22,5 @@ MonoBehaviour:
   - T4_001
   Requirements:
   - HoldingLevel>=4
-  Bonus: CompanyLimit:+3
+  Bonus:
+  - CompanyLimit:+3

@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_004
   Requirements:
   - Cash>=15000
-  Bonus: UnlockCompany:Clothing
+  Bonus:
+  - UnlockCompany:Clothing

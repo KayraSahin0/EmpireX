@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_002
   Requirements:
   - Brand>=25
-  Bonus: Brand:+10
+  Bonus:
+  - Brand:+10

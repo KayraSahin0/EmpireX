@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_010
   Requirements:
   - FoodCompanyLevel>=5
-  Bonus: UnlockCompany:Restaurant
+  Bonus:
+  - UnlockCompany:Restaurant

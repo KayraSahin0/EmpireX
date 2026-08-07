@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_011
   Requirements:
   - Cash>=1000000
-  Bonus: InvestmentReturn:+5
+  Bonus:
+  - InvestmentReturn:+5

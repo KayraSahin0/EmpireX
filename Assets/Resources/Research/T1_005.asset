@@ -21,4 +21,5 @@ MonoBehaviour:
   Prerequisites:
   - T1_001
   Requirements: []
-  Bonus: OperatingCost:-2
+  Bonus:
+  - OperatingCost:-2

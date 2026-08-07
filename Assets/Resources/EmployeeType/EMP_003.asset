@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72654ed162ef9542b46ee5aeec33a12, type: 3}
+  m_Name: EMP_003
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.EmployeeTypeSO
+  Id: EMP_003
+  Name: Marketing Specialist
+  BaseSalary: 3600
+  BaseProductivity: 85
+  Skills:
+  - SkillType: 2
+    Value: 95
+  - SkillType: 3
+    Value: 75
+  - SkillType: 5
+    Value: 35
+  - SkillType: 7
+    Value: 30
+  - SkillType: 1
+    Value: 25
+  - SkillType: 0
+    Value: 5
+  - SkillType: 4
+    Value: 20
+  - SkillType: 6
+    Value: 0
+  - SkillType: 8
+    Value: 0
+  - SkillType: 9
+    Value: 0
+  Icon: {fileID: 0}

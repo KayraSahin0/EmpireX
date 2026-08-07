@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 namespace EmpireX.Data
 {
-    [CreateAssetMenu(fileName = "NewResearch", menuName = "EmpireX/Data/Research")]
+    [CreateAssetMenu(fileName = "NewResearch", menuName = "EmpireX/Data/Research", order = 11)]
     public class ResearchSO : ScriptableObject
     {
         public string Id;
@@ -16,3 +16,4 @@ namespace EmpireX.Data
         public List<string> Bonus = new List<string>();
     }
 }
+

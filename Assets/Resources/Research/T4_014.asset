@@ -22,4 +22,5 @@ MonoBehaviour:
   - T4_006
   Requirements:
   - BranchCount>=30
-  Bonus: ManagerEfficiency:+15
+  Bonus:
+  - ManagerEfficiency:+15

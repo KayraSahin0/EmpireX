@@ -22,4 +22,5 @@ MonoBehaviour:
   - 'T4_005 '
   Requirements:
   - CityCount>=10
-  Bonus: LogisticsCost:-20
+  Bonus:
+  - LogisticsCost:-20

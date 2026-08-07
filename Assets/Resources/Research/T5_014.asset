@@ -22,4 +22,5 @@ MonoBehaviour:
   - 'T4_014 '
   Requirements:
   - ExecutiveCount>=8
-  Bonus: ExecutiveLimit:+4
+  Bonus:
+  - ExecutiveLimit:+4

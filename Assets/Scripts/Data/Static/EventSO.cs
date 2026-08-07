@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 namespace EmpireX.Data
 {
-    [CreateAssetMenu(fileName = "NewEvent", menuName = "EmpireX/Data/Event")]
+    [CreateAssetMenu(fileName = "NewEvent", menuName = "EmpireX/Data/Event", order = 8)]
     public class EventSO : ScriptableObject
     {
         public string Id;
@@ -12,3 +12,4 @@ namespace EmpireX.Data
         public string Effect;
     }
 }
+

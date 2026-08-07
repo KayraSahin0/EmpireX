@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_007
   Requirements:
   - CompanyCount>=3
-  Bonus: ProductionEfficiency:+10
+  Bonus:
+  - ProductionEfficiency:+10

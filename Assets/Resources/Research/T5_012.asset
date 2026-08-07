@@ -22,4 +22,5 @@ MonoBehaviour:
   - T5_011
   Requirements:
   - Cash>=10000000
-  Bonus: OperatingCost:-5
+  Bonus:
+  - OperatingCost:-5

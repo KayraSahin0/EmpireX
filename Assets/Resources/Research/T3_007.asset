@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_010
   Requirements:
   - EmployeeCount>=75
-  Bonus: EmployeeHappiness:+15
+  Bonus:
+  - EmployeeHappiness:+15

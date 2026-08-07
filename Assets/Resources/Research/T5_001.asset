@@ -23,4 +23,5 @@ MonoBehaviour:
   Requirements:
   - CountryCount>=2
   - CompanyCount>=8
-  Bonus: UnlockMechanic:InternationalExpansion
+  Bonus:
+  - UnlockMechanic:InternationalExpansion

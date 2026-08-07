@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_006
   Requirements:
   - CompanyCount>=2
-  Bonus: UnlockCompany:Furniture
+  Bonus:
+  - UnlockCompany:Furniture

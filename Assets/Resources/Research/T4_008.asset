@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_012
   Requirements:
   - Brand>=1000
-  Bonus: Demand:+20
+  Bonus:
+  - Demand:+20

@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 namespace EmpireX.Data
 {
-    [CreateAssetMenu(fileName = "NewExecutiveType", menuName = "EmpireX/Data/ExecutiveType")]
+    [CreateAssetMenu(fileName = "NewExecutiveType", menuName = "EmpireX/Data/ExecutiveType", order = 9)]
     public class ExecutiveTypeSO : ScriptableObject
     {
         public string Id;
         public string Name;
-        public string BonusType;
-        public float BonusValue;
         public double Salary;
-        public Sprite Icon;
+        public List<string> Bonuses = new List<string>();
+        public Sprite Icon; // Kaldırılacak
     }
 }
+

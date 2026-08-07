@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_003
   Requirements:
   - EmployeeCount>=10
-  Bonus: EmployeeProductivity:+5
+  Bonus:
+  - EmployeeProductivity:+5

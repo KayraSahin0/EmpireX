@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_003
   Requirements:
   - BranchCount>=2
-  Bonus: Revenue:+5
+  Bonus:
+  - Revenue:+5

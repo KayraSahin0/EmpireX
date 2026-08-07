@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2deebb2bc91070c43a508de28502069c, type: 3}
+  m_Name: EXE_005
+  m_EditorClassIdentifier: EmpireX.Data::EmpireX.Data.ExecutiveTypeSO
+  Id: EXE_005
+  Name: Accounting Director
+  Salary: 18000
+  Bonuses:
+  - OperatingCost:-12
+  - TaxEfficiency:+8
+  - ExpenseControl:+15
+  Icon: {fileID: 0}

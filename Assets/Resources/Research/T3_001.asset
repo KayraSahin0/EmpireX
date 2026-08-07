@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_014
   Requirements:
   - BranchCount>=8
-  Bonus: BranchLimit:+10
+  Bonus:
+  - BranchLimit:+10

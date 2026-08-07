@@ -20,4 +20,5 @@ MonoBehaviour:
   MaxLevel: 1
   Prerequisites: []
   Requirements: []
-  Bonus: UnlockMechanic:Company
+  Bonus:
+  - UnlockMechanic:Company

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 namespace EmpireX.Data
 {
-    [CreateAssetMenu(fileName = "NewCity", menuName = "EmpireX/Data/City")]
+    [CreateAssetMenu(fileName = "NewCity", menuName = "EmpireX/Data/City", order = 4)]
     public class CitySO : ScriptableObject
     {
         public string Id;
@@ -15,3 +15,4 @@ namespace EmpireX.Data
         public float Competition;
     }
 }
+

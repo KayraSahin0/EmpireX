@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_011
   Requirements:
   - 'CompanyCount>=5 '
-  Bonus: UnlockCompany:Insurance
+  Bonus:
+  - UnlockCompany:Insurance

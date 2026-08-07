@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_006
   Requirements:
   - CompanyLevel>=3
-  Bonus: UnlockMechanic:Branch
+  Bonus:
+  - UnlockMechanic:Branch

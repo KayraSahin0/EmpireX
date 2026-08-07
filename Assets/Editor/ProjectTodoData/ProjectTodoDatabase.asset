@@ -149,6 +149,25 @@ MonoBehaviour:
     isCompleted: 0
     createdAtTicks: 639216455414036754
     completedAtTicks: 0
+  - id: ef5c2a62-07ad-40e3-983b-f21b3b9c4b13
+    title: "Gelecek g\xFCncellemelerde eklenecek"
+    description: "Y\xF6netici Kalitesi (Rarity) (Expencive eklenebilir)\n\nBu, oyunun
+      i\u015Fe al\u0131m sistemini \xE7ok daha ilgi \xE7ekici hale getirir.\n\nCommon\n\nRare\n\nEpic\n\nLegendary\n\n\xD6rnek:\n\nRarity\tBonus
+      Say\u0131s\u0131\tBonus G\xFCc\xFC\nCommon\t1\tD\xFC\u015F\xFCk\nRare\t2\tOrta\nEpic\t3\tY\xFCksek\nLegendary\t4-5\t\xC7ok
+      y\xFCksek\n\nB\xF6ylece iki farkl\u0131 CTO ayn\u0131 olmaz. Oyuncu daha iyi
+      y\xF6neticileri bulmak i\xE7in i\u015Fe al\u0131m yapmaya devam eder, bu da
+      oyunun tekrar oynanabilirli\u011Fini art\u0131r\u0131r."
+    categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
+    isCompleted: 0
+    createdAtTicks: 639217031794373918
+    completedAtTicks: 0
+  - id: c45f4042-6ef0-4dd2-b096-ca7701f5becd
+    title: "\xC7al\u0131\u015Fan E\u011Fitimi"
+    description: "\xC7al\u0131\u015Fanlar geli\u015Ftirilebilecek"
+    categoryId: 6200c9d8-d402-45c1-b81d-1dcc83a76214
+    isCompleted: 0
+    createdAtTicks: 639217059847728943
+    completedAtTicks: 0
   categories:
   - id: 43f67495-a5b7-46c2-bcf2-832743e37dd1
     name: UI

@@ -21,4 +21,5 @@ MonoBehaviour:
   Prerequisites:
   - T1_001
   Requirements: []
-  Bonus: CompanyLimit:+1
+  Bonus:
+  - CompanyLimit:+1

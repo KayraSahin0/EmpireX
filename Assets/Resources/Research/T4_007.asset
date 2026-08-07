@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_007
   Requirements:
   - EmployeeCount>=250
-  Bonus: EmployeeStress:-15
+  Bonus:
+  - EmployeeStress:-15

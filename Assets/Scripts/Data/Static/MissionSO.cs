@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EmpireX.Data
 {
@@ -10,7 +10,7 @@ namespace EmpireX.Data
         PerformAcquisition
     }
 
-    [CreateAssetMenu(fileName = "NewMission", menuName = "EmpireX/Data/Mission")]
+    [CreateAssetMenu(fileName = "NewMission", menuName = "EmpireX/Data/Mission", order = 10)]
     public class MissionSO : ScriptableObject
     {
         public string Id;
@@ -21,3 +21,4 @@ namespace EmpireX.Data
         public double CashReward;
     }
 }
+

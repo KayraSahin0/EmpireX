@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_001
   Requirements:
   - BranchCount>=1
-  Bonus: OperatingCost:-2
+  Bonus:
+  - OperatingCost:-2

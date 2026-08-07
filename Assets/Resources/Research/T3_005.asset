@@ -22,4 +22,5 @@ MonoBehaviour:
   - T1_010
   Requirements:
   - 'Brand>=250 '
-  Bonus: UnlockCompany:Cafe
+  Bonus:
+  - UnlockCompany:Cafe

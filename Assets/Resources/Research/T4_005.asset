@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_010
   Requirements:
   - BranchCount>=20
-  Bonus: LogisticsCost:-15
+  Bonus:
+  - LogisticsCost:-15

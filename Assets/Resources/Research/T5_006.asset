@@ -22,4 +22,5 @@ MonoBehaviour:
   - T4_015
   Requirements:
   - ResearchCenterLevel>=2
-  Bonus: ResearchSpeed:+10
+  Bonus:
+  - ResearchSpeed:+10

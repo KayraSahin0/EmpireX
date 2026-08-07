@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using EmpireX.Events;
 using EmpireX.Economy;
 using EmpireX.Company;
@@ -46,6 +46,7 @@ namespace EmpireX.Core
         public OfficeManager OfficeManager { get; private set; }
         public ExecutiveManager ExecutiveManager { get; private set; }
         public EmployeeManager EmployeeManager { get; private set; }
+        public EmpireX.Employee.HRManager HRManager { get; private set; }
         public BranchManager BranchManager { get; private set; }
         public HoldingManager HoldingManager { get; private set; }
         public ResearchManager ResearchManager { get; private set; }
@@ -139,11 +140,12 @@ namespace EmpireX.Core
             OfficeManager.Initialize();
             ExecutiveManager.Initialize();
             EmployeeManager.Initialize();
+            HRManager.Initialize();
             BranchManager.Initialize();
             HoldingManager.Initialize();
 
             // LoadGame burada otomatik YAPILMAMALIDIR! 
-            // Save dosyası MainMenu'den (UI) manuel tetiklenerek yüklenmelidir.
+            // Save dosyasÄ± MainMenu'den (UI) manuel tetiklenerek yÃ¼klenmelidir.
         }
 
         public void StartGameSimulation()
@@ -171,6 +173,7 @@ namespace EmpireX.Core
                 HoldingManager?.Dispose();
                 BranchManager?.Dispose();
                 EmployeeManager?.Dispose();
+            HRManager?.Dispose();
                 ExecutiveManager?.Dispose();
                 OfficeManager?.Dispose();
                 CompanyManager?.Dispose();
@@ -193,3 +196,4 @@ namespace EmpireX.Core
         }
     }
 }
+

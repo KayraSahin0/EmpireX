@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace EmpireX.Data
@@ -80,9 +80,33 @@ namespace EmpireX.Data
         public int Employees;
     }
 
-    [Serializable]
+        [Serializable]
+    public class CandidateData
+    {
+        public string Id;
+        public bool IsExecutive;
+        public string TypeId; // EmployeeTypeSO or ExecutiveTypeSO ID
+        public string Name;
+        public int Age;
+        public string PortraitPath;
+        public double ExpectedSalary;
+        public float BaseProductivity;
+        public float Experience;
+        public int WaitDays;
+        public int MaxWaitDays;
+        public string PreviousCompany;
+        
+        // Sadece Executive için
+        public List<string> Bonuses = new List<string>();
+
+        // Sadece Employee için
+        public List<EmployeeSkillValue> Skills = new List<EmployeeSkillValue>();
+    }
+[Serializable]
     public class EmployeeData
     {
+        public string PortraitPath;
+        public int Age;
         public string Id;
         public string CompanyId;
         public string EmployeeTypeId;
@@ -100,6 +124,8 @@ namespace EmpireX.Data
     [Serializable]
     public class ExecutiveData
     {
+        public string PortraitPath;
+        public int Age;
         public string Id;
         public string CompanyId;
         public string ExecutiveTypeId;
@@ -156,7 +182,7 @@ namespace EmpireX.Data
         public int TotalCountries;
         public float TotalPlayTime;
         
-        // Grafikler ve Raporlar için Tarihsel Veriler
+        // Grafikler ve Raporlar iÃ§in Tarihsel Veriler
         public List<double> NetWorthHistory = new List<double>();
         public List<double> MonthlyRevenueHistory = new List<double>();
         public List<double> MonthlyProfitHistory = new List<double>();
@@ -226,8 +252,8 @@ namespace EmpireX.Data
         public float TaxRate;
         public float Inflation;
         public float InterestRate;
-        public float Stability; // 0-100 arası (100 en iyi)
-        public float EconomyLevel; // 0-100 arası
+        public float Stability; // 0-100 arasÄ± (100 en iyi)
+        public float EconomyLevel; // 0-100 arasÄ±
     }
 
     [Serializable]
@@ -255,18 +281,20 @@ namespace EmpireX.Data
         public List<CityData> Cities = new List<CityData>();
         public List<CountryData> Countries = new List<CountryData>();
         public List<NewsData> News = new List<NewsData>();
+        public List<CandidateData> EmployeeCandidates = new List<CandidateData>();
+        public List<CandidateData> ExecutiveCandidates = new List<CandidateData>();
         public EconomyData EconomyData = new EconomyData();
         public StatisticsData StatisticsData = new StatisticsData();
         public TimeData TimeData = new TimeData();
         
         public List<MissionData> ActiveMissions = new List<MissionData>();
-        public long LastMissionRefreshTime; // Gerçek dünya zamanı (Real-time)
+        public long LastMissionRefreshTime; // GerÃ§ek dÃ¼nya zamanÄ± (Real-time)
         
         public string ActiveWeeklyEventId;
-        public long WeeklyEventEndTime; // Gerçek dünya zamanı (Real-time)
+        public long WeeklyEventEndTime; // GerÃ§ek dÃ¼nya zamanÄ± (Real-time)
 
         /// <summary>
-        /// Eksik listeleri tamamlar ve veriyi doğrular.
+        /// Eksik listeleri tamamlar ve veriyi doÄŸrular.
         /// </summary>
         public void ValidateAndInitializeMissing()
         {
@@ -284,7 +312,7 @@ namespace EmpireX.Data
             if (EconomyData == null) EconomyData = new EconomyData();
             if (StatisticsData == null) StatisticsData = new StatisticsData();
             
-            // Tarihsel listeleri doğrula
+            // Tarihsel listeleri doÄŸrula
             if (StatisticsData.NetWorthHistory == null) StatisticsData.NetWorthHistory = new List<double>();
             if (StatisticsData.MonthlyRevenueHistory == null) StatisticsData.MonthlyRevenueHistory = new List<double>();
             if (StatisticsData.MonthlyProfitHistory == null) StatisticsData.MonthlyProfitHistory = new List<double>();
@@ -294,3 +322,5 @@ namespace EmpireX.Data
         }
     }
 }
+
+

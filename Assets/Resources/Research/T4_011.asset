@@ -22,4 +22,5 @@ MonoBehaviour:
   - T3_014
   Requirements:
   - CityCount>=5
-  Bonus: UnlockCompany:Hotel
+  Bonus:
+  - UnlockCompany:Hotel

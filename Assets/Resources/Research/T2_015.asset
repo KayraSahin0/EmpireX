@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_007
   Requirements:
   - 'Cash>=50000 '
-  Bonus: UnlockCompany:Electronics
+  Bonus:
+  - UnlockCompany:Electronics

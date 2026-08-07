@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_001
   Requirements:
   - CompanyCount>=2
-  Bonus: CompanyLimit:+1
+  Bonus:
+  - CompanyLimit:+1

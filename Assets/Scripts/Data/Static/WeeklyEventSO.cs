@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EmpireX.Data
 {
@@ -10,14 +10,15 @@ namespace EmpireX.Data
         ConstructionCostReduction
     }
 
-    [CreateAssetMenu(fileName = "NewWeeklyEvent", menuName = "EmpireX/Data/WeeklyEvent")]
+    [CreateAssetMenu(fileName = "NewWeeklyEvent", menuName = "EmpireX/Data/WeeklyEvent", order = 13)]
     public class WeeklyEventSO : ScriptableObject
     {
         public string Id;
         public string Title;
         [TextArea] public string Description;
         public WeeklyEventModifier ModifierType;
-        public float ModifierValue; // Örn: 1.2 (%20 artış) veya 0.8 (%20 düşüş)
-        public int DurationDays; // Olayın süreceği gün sayısı (Gerçek hayatta)
+        public float ModifierValue; // Ã–rn: 1.2 (%20 artÄ±ÅŸ) veya 0.8 (%20 dÃ¼ÅŸÃ¼ÅŸ)
+        public int DurationDays; // OlayÄ±n sÃ¼receÄŸi gÃ¼n sayÄ±sÄ± (GerÃ§ek hayatta)
     }
 }
+

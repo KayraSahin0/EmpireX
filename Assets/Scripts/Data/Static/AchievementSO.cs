@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EmpireX.Data
 {
@@ -11,15 +11,16 @@ namespace EmpireX.Data
         HoldingLevel
     }
 
-    [CreateAssetMenu(fileName = "NewAchievement", menuName = "EmpireX/Data/Achievement")]
+    [CreateAssetMenu(fileName = "NewAchievement", menuName = "EmpireX/Data/Achievement", order = 1)]
     public class AchievementSO : ScriptableObject
     {
         public string Id;
         public string Title;
         [TextArea] public string Description;
         public AchievementType Type;
-        public double TargetValue; // Hedef (Örn: 1000000 ciro)
-        public double CashReward;  // Ödül Nakit
-        public double BrandReward; // Ödül Marka Değeri
+        public double TargetValue; // Hedef (Ã–rn: 1000000 ciro)
+        public double CashReward;  // Ã–dÃ¼l Nakit
+        public double BrandReward; // Ã–dÃ¼l Marka DeÄŸeri
     }
 }
+

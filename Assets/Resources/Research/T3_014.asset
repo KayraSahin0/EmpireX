@@ -22,4 +22,5 @@ MonoBehaviour:
   - T2_013
   Requirements:
   - CompanyCount>=3
-  Bonus: UnlockCompany:RealEstate
+  Bonus:
+  - UnlockCompany:RealEstate
